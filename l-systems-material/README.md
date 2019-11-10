@@ -9,8 +9,8 @@ The book is best served from a webserver. One option is to use
 cargo +nigthly install miniserve
 ```
 
-This requires the nightly channel for now which can be installed with 
-`rustup update nightly`. Once installed you can serve the book by running 
+This requires the nightly channel for now which can be installed with
+`rustup update nightly`. Once installed you can serve the book by running
 
 ```sh
 miniserve book
