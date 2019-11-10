@@ -41,7 +41,7 @@ fn main() {
     let writer = std::io::stdout();
     let mut renderer = StringRenderer::new(writer);
     // uncomment to use the crab renderer
-    // let mut renderer = Crab::new(system.render_config.clone());
+    let mut renderer = Crab::new(system.render_config.clone());
 
     render(system, iterations, &mut renderer);
 }
