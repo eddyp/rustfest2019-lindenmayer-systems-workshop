@@ -1,5 +1,5 @@
 config:
-step = 8
+step = 3
 angle = 45
 
 rules:
