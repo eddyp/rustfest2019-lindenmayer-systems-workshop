@@ -1,0 +1,1891 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>L-Systems</title>
+        
+        <meta name="robots" content="noindex" />
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="A compendium to the L-Systems workshop">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="outline.html"><strong aria-hidden="true">2.</strong> Outline</a></li><li><a href="l-system.html"><strong aria-hidden="true">3.</strong> L-system</a></li><li><ol class="section"><li><a href="lsystem/Aristid.html"><strong aria-hidden="true">3.1.</strong> Aristid Lindenmayer</a></li><li><a href="lsystem/algae.html"><strong aria-hidden="true">3.2.</strong> Algae</a></li><li><a href="lsystem/algae.ls.html"><strong aria-hidden="true">3.3.</strong> algae.ls</a></li><li><a href="lsystem/koch.ls.html"><strong aria-hidden="true">3.4.</strong> koch.ls</a></li><li><a href="lsystem/config.html"><strong aria-hidden="true">3.5.</strong> config</a></li><li><a href="lsystem/plant.html"><strong aria-hidden="true">3.6.</strong> Plant</a></li><li><a href="lsystem/crab.html"><strong aria-hidden="true">3.7.</strong> Crab graphics</a></li><li><a href="lsystem/synthesis.html"><strong aria-hidden="true">3.8.</strong> Synthesis</a></li><li><a href="lsystem/expose.html"><strong aria-hidden="true">3.9.</strong> Exposé</a></li><li><a href="lsystem/fun.html"><strong aria-hidden="true">3.10.</strong> Have fun</a></li></ol></li><li><a href="overview.html"><strong aria-hidden="true">4.</strong> Overview</a></li><li><ol class="section"><li><a href="cli.html"><strong aria-hidden="true">4.1.</strong> Command Line Interface</a></li><li><a href="api.html"><strong aria-hidden="true">4.2.</strong> api Module</a></li></ol></li><li><a href="parser.html"><strong aria-hidden="true">5.</strong> Parsers</a></li><li><ol class="section"><li><a href="parser/what.html"><strong aria-hidden="true">5.1.</strong> What is a Parser?</a></li><li><a href="parser/type.html"><strong aria-hidden="true">5.2.</strong> Looking at the type</a></li><li><a href="parser/function.html"><strong aria-hidden="true">5.3.</strong> Functions are Parsers!</a></li><li><a href="parser/character.html"><strong aria-hidden="true">5.4.</strong> Parsing a char</a></li><li><a href="parser/any.html"><strong aria-hidden="true">5.5.</strong> Parsing any char</a></li><li><a href="parser/literal.html"><strong aria-hidden="true">5.6.</strong> Literal</a></li><li><a href="parser/combinators.html"><strong aria-hidden="true">5.7.</strong> Combinators</a></li><li><a href="parser/map.html"><strong aria-hidden="true">5.8.</strong> Map</a></li><li><a href="parser/between.html"><strong aria-hidden="true">5.9.</strong> Between</a></li><li><a href="parser/oneof.html"><strong aria-hidden="true">5.10.</strong> OneOf</a></li><li><a href="parser/utilities.html"><strong aria-hidden="true">5.11.</strong> Utilities</a></li><li><a href="parser/macros.html"><strong aria-hidden="true">5.12.</strong> Macros</a></li><li><a href="parser/sequence.html"><strong aria-hidden="true">5.13.</strong> Parsing a sequence</a></li><li><a href="parser/framework.html"><strong aria-hidden="true">5.14.</strong> Use the framework</a></li></ol></li><li><a href="interpreter.html"><strong aria-hidden="true">6.</strong> Interpreter</a></li><li><ol class="section"><li><a href="interpreter/what.html"><strong aria-hidden="true">6.1.</strong> What is an Interpreter</a></li><li><a href="interpreter/signature.html"><strong aria-hidden="true">6.2.</strong> Signature</a></li><li><a href="interpreter/level.html"><strong aria-hidden="true">6.3.</strong> level</a></li></ol></li><li><a href="renderer.html"><strong aria-hidden="true">7.</strong> Renderer</a></li><li><ol class="section"><li><a href="renderer/what.html"><strong aria-hidden="true">7.1.</strong> What is a Renderer</a></li><li><a href="renderer/initialization.html"><strong aria-hidden="true">7.2.</strong> Initialization</a></li><li><a href="renderer/renderer-config.html"><strong aria-hidden="true">7.3.</strong> Renderer Configuration</a></li><li><a href="renderer/crab-basics.html"><strong aria-hidden="true">7.4.</strong> Implementing Basic Instructions</a></li><li><a href="renderer/state-management.html"><strong aria-hidden="true">7.5.</strong> Renderer State Management</a></li></ol></li><li><a href="extensions.html"><strong aria-hidden="true">8.</strong> Why stop here</a></li><li class="affix"><a href="dependencies.html">Working with Dependencies</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">L-Systems</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
+<p>This book is a compendium to the <a href="https://en.wikipedia.org/wiki/L-system">L-systems</a> workshop.</p>
+<p>This book and the workshop will introduce you to L-systems, allowing you to play
+and understand them.</p>
+<p>Understanding means that you get the opportunity to create a program that reads,
+evaluates and renders an L-system. We will start from scratch and teach you all
+the necessary tools and techniques to finish.</p>
+<p>This book serves as a guide during your journey. A trusty companion that cheers
+you on, helps you when you are stuck and can turn to when your motivation is
+low.</p>
+<h2><a class="header" href="#not-at-a-workshop" id="not-at-a-workshop">Not at a workshop?</a></h2>
+<p>This book is written to be self contained. The only downside of not being in a
+workshop is missing the ability to ask questions and getting a quick answer.</p>
+<p>There still is the ability to ask questions, it might just take some time before
+we can answer them. Try one of the following means of communication</p>
+<ul>
+<li><a href="https://join.slack.com/t/col-els-con/shared_invite/enQtNjUzNTYyNDY2ODIxLWQ1ZGRlZjg1YzM1NmNjMWE2Y2MxNWE4YjZmY2M5YjUyYmFmMjZhNWU3ZTEwYmU2M2ViNzc4YzFhYzdjNTExOWI">Slack</a></li>
+<li><a href="https://github.com/columbus-elst-connection/workshop/issues">GitHub Issues</a></li>
+<li><a href="mailto://daan.v.berkel.1980+l-system@gmail.com">Mail</a></li>
+</ul>
+<h1><a class="header" href="#outline" id="outline">Outline</a></h1>
+<p>There are various ways of learning and we want to enable you to choose your path
+through the material. Below you can find the main sections that we will address
+during this workshop.</p>
+<p>It is possible to progress through the sections in any order you want. We have
+setup things in such a way that you can rely on our code so long as yours is not
+ready.</p>
+<h2><a class="header" href="#l-systems" id="l-systems">L-systems</a></h2>
+<p>This section teaches you what <a href="https://en.wikipedia.org/wiki/L-system">L-systems</a> are, trains you how to
+create them, and allows you to play with them.</p>
+<p>Describing a L-system is one thing. Teaching a computer how to work with
+L-systems is another. The next sections are major parts in the software that
+allows you to explore L-systems.</p>
+<h2><a class="header" href="#parser" id="parser">Parser</a></h2>
+<p>A <a href="https://en.wikipedia.org/wiki/Parsing">parser</a> is a</p>
+<blockquote>
+<p>software component that takes input data (frequently text) and builds a data
+structure – often some kind of parse tree, abstract syntax tree or other
+hierarchical structure, giving a structural representation of the input while
+checking for correct syntax. </p>
+</blockquote>
+<p>This section focuses on parsing a L-system. We do this by creating our own
+<a href="https://en.wikipedia.org/wiki/Parser_combinator">Parser Combinator framework</a> that we use to read an L-system
+and turn it into a data structure that we can use.</p>
+<h2><a class="header" href="#interpreter" id="interpreter">Interpreter</a></h2>
+<p>Once you have defined an L-system, you probably would like to do something with
+it. The <a href="https://en.wikipedia.org/wiki/Interpreter_(computing)">interpreter</a> helps with this goal. It diligently executes the
+instructions described by the L-system informing interested parties what has
+happened.</p>
+<p>The interpreter is the workhorse of our program. Although it is the centerpiece
+of our software, it is a quit simple machine.</p>
+<h2><a class="header" href="#renderer" id="renderer">Renderer</a></h2>
+<p>An L-system without a &quot;picture&quot; is as a Christmas tree without decorations. It
+still is instructive, but is sure isn't as much fun.</p>
+<p>In this section we explore various way of make a &quot;picture&quot; for our L-system.
+There are various ways of turning the L-system into meaningful artifact. Making
+an image is surely not the only one.</p>
+<h1><a class="header" href="#l-system" id="l-system">L-system</a></h1>
+<p>This section teaches you all about what <a href="https://en.wikipedia.org/wiki/L-system">L-systems</a> are.</p>
+<p>Read about Aristid Lindenmayer and why he invented his system. Explore the rich
+language and it's beautiful images.</p>
+<h1><a class="header" href="#aristid-lindenmayer" id="aristid-lindenmayer">Aristid Lindenmayer</a></h1>
+<p><a href="https://en.wikipedia.org/wiki/Aristid_Lindenmayer">Aristid Lindenmayer</a> was a Hungarian biologist. He lived from 1925
+until 1989. He studied biology and chemistry at the university of Budapest.
+Lindenmayer got his Ph.D. from the University of Michigan before accepting a
+position as professor in Philosophy of Life Sciences and Biology at the
+University of Utrecht.</p>
+<p><img src="lsystem//image/lindenmayer.jpg" alt="Aristid Lindenmayer" /></p>
+<h1><a class="header" href="#algae" id="algae">Algae</a></h1>
+<p>Aristid Lindenmayer introduces a system of substitutions that would later bear
+his name. He did this in a set of two articles; <em>Mathematical Models for
+Cellular Interactions in Development</em>. As the title implies it offers a
+mathematical theory to model growth in certain type of cells. Stripping away the
+mathematics his article described an example that modeled algae. A more modern
+description follows below.</p>
+<p>We will study <em>words</em>, i.e. a sequence of symbols, over an <em>alphabet</em>. In our
+example we take our alphabet to be the symbols <em>A</em>, and <em>B</em>. We will examine a
+series of words. In the algae example we are starting with the word <em>A</em>, it is
+our <em>axiom</em>.
+With the current word in the series, we replace each symbol with a sequence of
+symbols and concatenating the sub-sequences in a new word. In our example we
+will replace each occurring symbol <em>A</em> with the sequence <em>AB</em>, and each
+occurring symbol <em>B</em> with the sequence <em>A</em>.</p>
+<p>Below you find the first few iterations of this process.</p>
+<ol>
+<li><em>A</em>, our starting word.</li>
+<li><em>AB</em>, because the single <em>A</em> is replaced with <em>AB</em>.</li>
+<li><em>ABA</em>, because the single <em>A</em> is replaced with <em>AB</em> and the <em>B</em> is replaced with <em>A</em>.</li>
+<li><em>ABAAB</em>, because each <em>A</em> is replaced with <em>AB</em> and each <em>B</em> is replaced with <em>A</em>.</li>
+</ol>
+<p>In the above model the symbol <em>A</em> is a model for a mature cell, ready to divide
+itself. The division however is asymmetric. It allows the original cell to
+comfortable remain in place, making place for a young cell <em>B</em>. In its stead,
+the young cell <em>B</em> first must mature to and become an <em>A</em> cell before it can
+start reproducing itself.</p>
+<p>Although this is a simple model. A lot can be learned from this. For an few
+examples, see the exercises.</p>
+<h2><a class="header" href="#exercises" id="exercises">Exercises</a></h2>
+<ol>
+<li>Extend the example with the a few iterations.</li>
+<li>Count the number of symbols in each word of the series. Guess what number comes next.</li>
+<li>Count the number of <em>A</em>'s and the number of <em>B</em>'s separately. What do you get.</li>
+<li>We will number the words in our series, \(W_{0}\) for our start word,
+\(W_{1}\), for the next, \(W_{2}\) for the one after that, etcetera. Pick
+any number, let's say 4. Notice how \(W_{4}\), i.e. <em>ABAAB</em> is the
+concatenation of <em>ABA</em>, which is \(W_{3}\), and <em>AB</em>, which is \(W_{2}\).
+In other words \(W_{4}=W_{3}W_{2}\).</li>
+</ol>
+<ul>
+<li>Check if something similar holds for \(W_{3}\) and \(W_{5}\).</li>
+<li>Does this property, i.e. \(W_{k} = W_{k-1}W_{k-2}\) always hold?</li>
+</ul>
+<ol start="5">
+<li>The above properties remind us of the Fibonacci sequence. For the Fibonacci
+sequence there is a formula that instantly calculates the the value in the
+sequences. Robert Dimartino found out that a similar property holds for our
+words. Search for
+<a href="https://en.wikipedia.org/wiki/Fibonacci_word"><em>Fibonacci word</em></a>  for more
+information.</li>
+</ol>
+<h1><a class="header" href="#algaels" id="algaels">algae.ls</a></h1>
+<p>Take a look at the <code>systems/algae.ls</code> file. For convenience it is reproduced
+here</p>
+<pre><code class="language-plain">config:
+step = 100
+angle = 45
+
+rules:
+axiom  = A
+A =&gt; AB
+B =&gt; A
+</code></pre>
+<p>Does this look familiar?</p>
+<h2><a class="header" href="#rules" id="rules">Rules</a></h2>
+<p>Take a closer look at the <code>rules</code> section. It defines an axiom just as in the
+preceding chapter.</p>
+<p>Furthermore it defines two rules. The first rule <code>A =&gt; AB</code> tells us to replace
+every symbol <code>A</code> with its <em>production</em> <code>AB</code>. The last rule <code>B =&gt; A</code> tells us to
+replace each symbol <code>B</code> with the production <code>A</code>.
+This is exactly like the rules in the preceding chapter.</p>
+<h2><a class="header" href="#cargo-run" id="cargo-run">cargo run</a></h2>
+<p>Go into the <code>code</code> directory and run the following command</p>
+<pre><code class="language-sh">cargo run -- -f system/algae.ls -n 0
+</code></pre>
+<p>It should respond with <code>A</code>. Below the sequence of words generated by the
+L-system from the preceding chapter is reproduced.</p>
+<ol>
+<li><em>A</em></li>
+<li><em>AB</em></li>
+<li><em>ABA</em></li>
+<li><em>ABAAB</em></li>
+</ol>
+<p>Change the <code>-n</code> parameter in the call to cargo run and check if it corresponds
+with the above sequence.</p>
+<h2><a class="header" href="#exercices" id="exercices">Exercices</a></h2>
+<ol>
+<li>Check other values for the number of iterations.</li>
+<li>check out <code>cargo run -- --help</code>.</li>
+</ol>
+<h1><a class="header" href="#kochls" id="kochls">koch.ls</a></h1>
+<p>You may have noticed a different L-system in the <code>system</code> directory. I.e.
+<code>koch.ls</code>. It is reproduced here for convenience.</p>
+<pre><code class="language-plain">config:
+step = 5
+angle = 60
+
+rules:
+axiom = F
+F =&gt; F-F++F-F
+</code></pre>
+<p>Use this L-system in the <code>cargo run</code> command, and try to predict the answers.</p>
+<h2><a class="header" href="#a-picture-is-worth-a-thousand-words" id="a-picture-is-worth-a-thousand-words">A picture is worth a thousand words</a></h2>
+<p>L-systems would still be worthwhile if the output is only a sequence of symbols.
+But it really shines when these symbols are interpreted as a description of a
+image.</p>
+<p>Let's make that possible. Open the <code>src/main.rs</code>file. You don't need to
+understand any of this, we will explain all of it during this workshop.</p>
+<p>There are a few comments instructing to <em>uncomment</em> certain lines to use the
+crab renderer, what ever that should be.
+Do that now and then run the following command</p>
+<pre><code class="language-sh">cargo run -- -f system/koch.ls -n 4
+</code></pre>
+<h2><a class="header" href="#exercises-1" id="exercises-1">Exercises</a></h2>
+<ol>
+<li>Iterate the words for the <code>koch.ls</code> L-system by hand for a few values.</li>
+<li>Run the same command with different number of iterations.</li>
+</ol>
+<h1><a class="header" href="#config" id="config">config</a></h1>
+<p>While playing with different number of iterations for the Koch L-system. You
+probably noticed that sometimes the image would be drawn outside the borders of
+the screen.</p>
+<p>For example, the command </p>
+<pre><code>cargo run -- -f system/koch.ls -n 5
+</code></pre>
+<p>Will result in a picture similar to the one below.</p>
+<p><img src="lsystem//image/koch-cutoff.png" alt="The Koch curve drawn outside the boundary" /></p>
+<p>The <code>config</code> section in <code>koch.ls</code> will be enable us to remedy that.</p>
+<h2><a class="header" href="#step" id="step">step</a></h2>
+<p>The config section has a number of key value pairs. One of them is <code>step</code>. This
+controls how big the line segment is whenever line segment is drawn. When you
+change it to <code>2</code> and run the the command above, we will capture the Koch curve
+inside the window.</p>
+<p><img src="lsystem//image/koch.png" alt="The Koch curve in full glory" /></p>
+<h2><a class="header" href="#angle" id="angle">angle</a></h2>
+<p>There is an other option you can configure. I.e. <code>angle</code>. This determines the
+number of degrees through which a turn is made. Change the configuration to have
+a step of <code>30</code> and an angle of <code>80</code>. Next run the L-system for 4 iterations. </p>
+<p><img src="lsystem//image/pointy-koch.png" alt="A pointier Koch curve" /></p>
+<h2><a class="header" href="#exercises-2" id="exercises-2">Exercises</a></h2>
+<ol>
+<li>Play with the configuration to produce a variety of different images.</li>
+</ol>
+<h1><a class="header" href="#plant" id="plant">Plant</a></h1>
+<p>We are going to write our own L-system. In this chapter you will go through the
+motions. The next chapter will explain in more detail how to rules are
+interpreted. </p>
+<h2><a class="header" href="#plantls" id="plantls">plant.ls</a></h2>
+<p>Create a file in the <code>system</code> directory called: <code>plant.ls</code>. This will will
+contain a description of our L-system.</p>
+<h2><a class="header" href="#config-1" id="config-1">config</a></h2>
+<p>Begin with a <code>config</code> header. As you know this starts the configuration section
+where you can configure the generation of the image. Configure the step to be
+<code>5</code> and the angle to be <code>25</code>.</p>
+<pre><code class="language-plain">config:
+step = 5
+angle = 25
+</code></pre>
+<h2><a class="header" href="#rules-1" id="rules-1">rules</a></h2>
+<p>Next comes the rules section which is started with a <code>rules</code> header. The first
+thing in a rules section should be the <em>axiom</em>. Make this to be <code>--X</code>.
+The axiom is followed by a number of rules. For this L-system there are two. One
+rule that tells us to transform <code>F</code> into <code>FF</code>. The other rule tells us to
+transform <code>X</code> into <code>F-[[X]+X]+F[+FX]-X</code>.</p>
+<pre><code class="language-plain">rules:
+axiom = --X
+X =&gt; F-[[X]+X]+F[+FX]-X
+F =&gt; FF
+</code></pre>
+<h2><a class="header" href="#execution" id="execution">Execution</a></h2>
+<p>With the <code>plant.ls</code> file in place, we can admire our work by executing the
+command</p>
+<pre><code class="language-sh">cargo run -- -f system/plant.ls -n 5
+</code></pre>
+<p><img src="lsystem//image/plant.png" alt="A delicate plant" /></p>
+<h2><a class="header" href="#exercises-3" id="exercises-3">Exercises</a></h2>
+<ol>
+<li>Create the <code>plant.ls</code> file as described in this chapter.</li>
+<li>Play with it's configuration.</li>
+</ol>
+<h1><a class="header" href="#crab-graphics" id="crab-graphics">Crab graphics</a></h1>
+<p>You might wonder how these image are being drawn. This chapter will explain the
+connection between the words of the L-system and image being drawn.</p>
+<h2><a class="header" href="#ferris-the-crab" id="ferris-the-crab">Ferris the Crab</a></h2>
+<p><img src="lsystem//image/ferris.jpeg" alt="Ferris the Crab" />
+The artist is <a href="https://twitter.com/whoisaldeka">@whoisaldeka</a>.</p>
+<p>We all know and love Ferris. But did you know that Ferris is a skilled and
+attentive artist. Ferris is willing to lend their skill for our workshop. By
+listening to our instructions they will draw an image for us.</p>
+<p>Below are the command that Ferris responds to. Each command has a
+corresponding symbol that Ferris knows, understands and responds to.</p>
+<h3><a class="header" href="#forward-f" id="forward-f">Forward <code>F</code></a></h3>
+<p>The forward command will make Ferris take a step forward, leaving a line in
+their trail. The step size is determined by the <code>step</code> value of the
+configuration.</p>
+<h3><a class="header" href="#turnleft--" id="turnleft--">TurnLeft <code>-</code></a></h3>
+<p>When the turn left command is issued Ferris will change heading accordingly. The
+angle through which Ferris will turn is configured with the <code>angle</code> value of the
+configuration.</p>
+<h3><a class="header" href="#turnright-" id="turnright-">TurnRight <code>+</code></a></h3>
+<p>Correspondingly, Ferris knows about how to turn right.</p>
+<h3><a class="header" href="#push-" id="push-">Push <code>[</code></a></h3>
+<p>Not only is Ferris a great artist, they have excellent memory. With the push
+command Ferris will remember their position and heading so that they are able to
+come back to it at a later time, i.e. when the corresponding pop command is
+issued.</p>
+<h3><a class="header" href="#pop-" id="pop-">Pop <code>]</code></a></h3>
+<p>What would push be without a pop? Ferris agrees and will respond to the pop
+command by remembering position and heading from the corresponding push command.
+Push and pop commands should properly match. Just like the brackets used to
+represents the commands.</p>
+<h3><a class="header" href="#any-other-symbol" id="any-other-symbol">Any other symbol</a></h3>
+<p>Any other symbol besides the ones described above will be ignored by Ferris.
+That does not mean that they aren't important. For they can help in constructing
+more complex drawings.</p>
+<h1><a class="header" href="#synthesis" id="synthesis">Synthesis</a></h1>
+<p>L-systems are like a brush that allow you to paint beautiful forms. But like any
+form of art it takes practice to become proficient. This chapter will allow you
+to take a peek behind the curtain. It will provide a few hints and tips when
+trying to create an L-system to resemble an image.</p>
+<h2><a class="header" href="#target-image" id="target-image">Target image</a></h2>
+<p><img src="lsystem/../image/tree.png" alt="A tree to recreate" /></p>
+<p>Look at the above image. How would an L-system look like that would recreate
+that image?</p>
+<h2><a class="header" href="#configuration" id="configuration">Configuration</a></h2>
+<h3><a class="header" href="#step-1" id="step-1">Step</a></h3>
+<p>Step is less critical for the image so any starting value that allows you to see
+forwards clearly will do. Usually I settle on 30 and work from there</p>
+<h3><a class="header" href="#angle-1" id="angle-1">Angle</a></h3>
+<p>Take a look at some of the angles in the image. The angle between the main trunk
+and the first branches seems to be 45 degrees. Looking at other junctions the
+angle of 45 degrees seems to be found a lot.</p>
+<p>Keep in mind that the configuration could have a different angle configured. It
+is only necessary that a series of plusses or minusses can create an angle of 45
+degrees. E.g. an angle of 90 degrees can be made with an base angle of 45 by
+turning twice in a row.</p>
+<h3><a class="header" href="#l-system-file" id="l-system-file">L-system file</a></h3>
+<p>Start a file <code>tree.ls</code> in the <code>system</code> directory. We can already provide one of
+the sections</p>
+<pre><code class="language-plain">config:
+step = 30
+angle = 45
+</code></pre>
+<h2><a class="header" href="#rules-2" id="rules-2">Rules</a></h2>
+<h3><a class="header" href="#axiom" id="axiom">Axiom</a></h3>
+<p>Ferris the crab will start heading to the right. Since the main trunk grows
+upward we need to first orient Ferris before they can start drawing. Luckily 90
+is a multiple of 45 so two left turns will start us off right away.</p>
+<p>To get some feedback if we are on the right track we could add the rules section
+and the following axiom.</p>
+<pre><code class="language-plain">rules:
+axiom = --F
+</code></pre>
+<p>Execute <code>cargo run -- -f system/tree.ls -n 0</code> to see a mighty trunk.</p>
+<h3><a class="header" href="#rules-3" id="rules-3">Rules</a></h3>
+<p>When we focus on the rules and look at the tree, we notice that from the trunk
+two branches sprout. Since Ferris can't lift the pen from the paper, we know
+from the junction that we need to branch.</p>
+<p>Let's try our hand. After each forward we will split in two. In one part we turn
+left and sprout an new tree. In the other part we turn right and sprout a new
+tree. After a moments thought we might come up with the following rule.</p>
+<pre><code class="language-plain">F =&gt; F[-F][+F]
+</code></pre>
+<p>Add the rule to the L-system and run it to see the result. Don't forget to
+change the number of iterations.</p>
+<h3><a class="header" href="#lengthening-the-stems" id="lengthening-the-stems">Lengthening the stems</a></h3>
+<p>Seeing the image being drawn be Ferris, we notice that the structure is correct,
+but the length of the stems are off. Taking a closer look the stems seem to grow
+shorter for each new branch.</p>
+<p>Thinking about this some more, this would occur naturally if each forward step
+would change into two ore more forwards step with each iteration. That would
+suggest </p>
+<pre><code class="language-plain">F =&gt; FF
+</code></pre>
+<p>Since we already used <code>F</code> we need to introduce a new symbol. Let's settle on <code>S</code>
+which will stand for seed.</p>
+<p>The axiom needs to change into <code>--S</code>, i.e. change orientation and plant a seed.
+Next, each seed will grow into a stem and sprout two new seeds, both growing in
+a different direction. I.e. <code>S =&gt; F[-S][+S]</code>.
+Lastly during each iteration the stems need to grow, which corresponds to the 
+<code>F =&gt; FF</code> rule.</p>
+<p>Change the rules and check the result.</p>
+<h2><a class="header" href="#optimization" id="optimization">Optimization</a></h2>
+<p>We have successfully recreated the image. But there is an optimization that
+could be performed. Think about the second pair of brackets in the 
+<code>S =&gt; F[-S][+S]</code> rule.</p>
+<p>We use a pair of brackets to return to the exact state Ferris was in when we
+opened the bracket upon closing the bracket pair. We usually do this because we
+want to draw something else from that location. But we aren't drawing anything
+after the second branch.</p>
+<p>Check that <code>S =&gt; F[-S]+S</code> results in the same image.</p>
+<h2><a class="header" href="#exercises-4" id="exercises-4">Exercises</a></h2>
+<ol>
+<li>Walk through this chapter and recreate the image.</li>
+<li>If you would want to delay the growth of the stems, how would you do that?</li>
+</ol>
+<h1><a class="header" href="#exposé" id="exposé">Exposé</a></h1>
+<p>Below you find a few images created from L-systems. It is your job to try to
+recreate them. This way you get a feeling for how L-systems can be used to
+recreate images.</p>
+<p>before you start, Take a look at the exercises. They might provide a hint.</p>
+<h2><a class="header" href="#tree" id="tree">Tree</a></h2>
+<p><img src="lsystem/../image/tree.png" alt="A tree" /></p>
+<h2><a class="header" href="#perspective" id="perspective">Perspective</a></h2>
+<p><img src="lsystem/../image/perspective.png" alt="A road lined with trees" /></p>
+<h2><a class="header" href="#square" id="square">Square</a></h2>
+<p><img src="lsystem/../image/square.png" alt="A square" /></p>
+<h2><a class="header" href="#sqoch" id="sqoch">Sqoch</a></h2>
+<p><img src="lsystem/../image/sqoch.png" alt="Sqoch" /></p>
+<h2><a class="header" href="#koch-island" id="koch-island">Koch Island</a></h2>
+<p><img src="lsystem/../image/koch-island.png" alt="Koch Island" /></p>
+<h2><a class="header" href="#hilbert-curve" id="hilbert-curve">Hilbert Curve</a></h2>
+<p><img src="lsystem/../image/hilbert.png" alt="Hilbert Curve" /></p>
+<h2><a class="header" href="#exercises-5" id="exercises-5">Exercises</a></h2>
+<ol>
+<li>What image corresponds with the L-system below. Try to make an educated guess
+before verifying your claim.</li>
+</ol>
+<pre><code class="language-plain">config:
+step = 100
+angle = 90
+
+rules:
+axiom = Q
+Q =&gt; A+A
+A =&gt; S+S
+S =&gt; F
+</code></pre>
+<ol start="2">
+<li>Try to create L-systems that recreate the images in this chapter.</li>
+</ol>
+<h1><a class="header" href="#have-fun" id="have-fun">Have fun</a></h1>
+<p>It is time to have fun and design and render your own L-systems. Feel free to
+share your work and amaze us with your splendid L-systems.</p>
+<h2><a class="header" href="#exercises-6" id="exercises-6">Exercises</a></h2>
+<ol>
+<li>Have fun.</li>
+</ol>
+<h1><a class="header" href="#overview" id="overview">Overview</a></h1>
+<p>This section will provide an overview of the scaffolding of the project. We have
+provided an command line interface you already used. That makes use of an api.
+Read all about how these interact. </p>
+<h1><a class="header" href="#command-line-interface" id="command-line-interface">Command Line Interface</a></h1>
+<p>The entrypoint to our program is a good place to start, so that we can get a
+sense for how all the pieces will fit together. The interface we're looking for
+is something like this: </p>
+<pre><code class="language-plain">l-system -f &lt;l-system-file&gt; -n &lt;iterations&gt;
+</code></pre>
+<p>We need a few main pieces in order to render an l-system. First is a file
+containing the description of our l-system. This will have the rules for symbol
+replacements, defines the <em>axiom</em> and it will also contain some starting
+configuration for our renderer. 
+Lastly we have the number of iterations, which is the number of times that we
+should apply the token substitution rules.</p>
+<p>The <code>main</code> function should parse these arguments, parse the l-system described
+in the file, then get the final productions and pass them to the renderer as
+individual instructions. Once that is complete, it should call finalize on the
+renderer. </p>
+<h1><a class="header" href="#api-module" id="api-module"><code>api</code> Module</a></h1>
+<p>In this section we describe the api that is provided that forms the tapestries
+onto we weave our application.</p>
+<p>It is good to keep in mind that we are working toward a Crab renderer. I.e. a
+turtle graphics capable ferris that responds to our commands.</p>
+<h2><a class="header" href="#renderconfig" id="renderconfig">RenderConfig</a></h2>
+<pre><code>#[derive(Debug, PartialEq)]
+pub struct RenderConfig {
+    pub step: u16,
+    pub angle: u16,
+}
+</code></pre>
+<p>The <code>RenderConfig</code> is used to configure the Crab renderer. <code>step</code> refers to the
+distance the Crab will travel when stepping forward. <code>angle</code> refers to the
+number of degrees the Crab will turn when we ask her to. This is what you'll parse from the l-system file.</p>
+<h2><a class="header" href="#renderinstruction" id="renderinstruction">RenderInstruction</a></h2>
+<p>We define this enum just to give us a simple way to represent what we want our Renderer to do. Our basic definition looks like this:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+#[derive(Debug, PartialEq, Eq)]
+pub enum RendererInstruction {
+    Forward,
+    RotateLeft,
+    RotateRight,
+    Push,
+    Pop,
+    NoOp,
+}
+#}</code></pre></pre>
+<p>This is a fairly minimal instruction set, but you can still do a lot with it. More full-featured L-system implementations may have <a href="./extensions.html">more instructions</a>, but we'll start simple for now.</p>
+<h2><a class="header" href="#symbol" id="symbol">Symbol</a></h2>
+<p>The heart of any L-system is Symbols. It is, afterall, a symbol substitution language. <code>Symbol</code> is defined as a trait with a few simple properties. First, it must implement <code>Eq</code> and <code>Hash</code> since we will need to compare them and potentially store them in a hashmap. Secondly, it must implement <code>Copy</code> to facilitate easily producing <code>Symbol</code>s based on the rules in our L-system. Lastly, we want it to also implement <code>Display</code> so that we can produce a nicer output when debugging. For this workshop we'll use <code>char</code>, since it already implements all of those traits.</p>
+<p>A <code>Symbol</code> must also implement the function <code>fn to_rendering_instruction(&amp;self) -&gt; RendererInstruction;</code>. This function maps each <code>Symbol</code> to an instruction for our renderer to execute. One important bit to point out is that our <code>RendererInstruction</code> enum includes a <code>NoOp</code> instruction, which instructs our Renderer to do nothing. We define this instruction so that it's clear when a <code>Symbol</code> does not map to any particular <code>RendererInstruction</code>. There are way more valid <code>char</code> values than there are <code>RendererInstruction</code> variants, so we need a clear way to represent the case when a <code>Symbol</code> is only used for matching substitutions.</p>
+<p>For our workshop, the mapping between <code>char</code> values and rendering instructions will be hard coded as part of the <code>Symbol::to_rendering_instruction</code> function. This mapping follows a fairly common convention, but other implementations will handle this differently. Some implementations even allow you do define this mapping yourself, but we'll leave all that for <a href="./extenstions.html">extra credit</a>.</p>
+<h2><a class="header" href="#rule" id="rule">Rule</a></h2>
+<p>The L-system file will contain a <code>rules:</code> section that has one or more rules for symbol replacement. In our API we'll represent each rule as a struct containing the <code>Symbol</code> to match and a <code>Vec&lt;Symbol&gt;</code> of replacements to produce. For example, the rule <code>F =&gt; F+F--F+F</code> would be represented by:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+Rule {
+    match_input: 'F',
+    productions: vec!['F', '+', 'F', '-', '-', 'F', '+', 'F'],
+}
+#}</code></pre></pre>
+<h2><a class="header" href="#lsystemrules" id="lsystemrules">LSystemRules</a></h2>
+<p>Once we have all the <code>Rule</code>s parsed, we'll represent the complete set of rules as a <code>HashMap&lt;char, Vec&lt;char&gt;&gt;</code> where the keys are the <code>Symbol</code>s to match and the values are the productions for that symbol. This just facilitates easy lookups.</p>
+<h2><a class="header" href="#lsystem" id="lsystem">LSystem</a></h2>
+<p>This struct is just a holder for the complete set of data that's been parsed from an l-system file. This represents almost everything we need in order to render the final image. The only additional piece we'll need is the number of iterations, but we pass that as a command line argument.</p>
+<h1><a class="header" href="#parser-1" id="parser-1">Parser</a></h1>
+<p>In the L-system section you have had the opportunity to learn about and play with
+Lindenmayer systems. The Parser section starts our journey of creating our own
+software to explore L-systems.</p>
+<p>The journey starts with teaching the computer about <code>.ls</code> files and what we
+describe with them. </p>
+<p>Make sure to look in to <a href="dependencies.html">working with dependencies</a> to find out
+how to incorporate your code into the project.</p>
+<h1><a class="header" href="#what-is-a-parser" id="what-is-a-parser">What is a Parser?</a></h1>
+<p>A <a href="https://en.wikipedia.org/wiki/Parsing">parser</a> is a</p>
+<blockquote>
+<p>software component that takes input data (frequently text) and builds a data
+structure – often some kind of parse tree, abstract syntax tree or other
+hierarchical structure, giving a structural representation of the input while
+checking for correct syntax.</p>
+</blockquote>
+<p>In our case we want to teach the computer to understand <code>.ls</code> files. This is our
+<em>input data</em>. Although this input is convenient for us, it is just a sequences of
+bytes to a computer.</p>
+<p>What we want is an L-system that we can manipulate. That is our <em>data
+structure</em>. Parsing is what brings us from our input data to our L-system.</p>
+<h2><a class="header" href="#parser-framework" id="parser-framework">Parser framework</a></h2>
+<p>We will be building our own Parser framework. I.e. we will build the
+infrastructure that allows us to create a custom parser. We will use our
+framework to create a specific parser that reads in our <code>.ls</code> files and create
+the L-system for us.</p>
+<h2><a class="header" href="#parser-combinator" id="parser-combinator">Parser Combinator</a></h2>
+<p>Our framework will be based on the concept of Parser Combinators. A Parser
+Combinator is a</p>
+<blockquote>
+<p>higher-order function that accepts several parsers as input and returns a new
+parser as its output. In this context, a parser is a function accepting strings
+as input and returning some structure as output, typically a parse tree or a set
+of indices representing locations in the string where parsing stopped
+successfully.</p>
+</blockquote>
+<p>If this does not really makes sense to you. Keep reading and soon you will be an
+expert Parser Combinatorist.</p>
+<h1><a class="header" href="#looking-at-the-type" id="looking-at-the-type">Looking at the type</a></h1>
+<p>Before we start out it is good to think what we want to achieve. This allows us
+to reason about the constraints and capture those in our types.</p>
+<p>A parser reads input and transforms that into some data structure. This already
+provides us with a decision. I.e. what type is our input?</p>
+<p>We want to make things easy for our selves and since string literals have type
+<code>&amp;str</code> we our going to pick that as our input type.</p>
+<p>We don't really know what output type is going to be, put we do know that the
+parser could fail. Take a look at the following code</p>
+<pre><code class="language-lsystem">F -&gt; FF
+</code></pre>
+<p>Although it looks like an L-system, it not quite an L-system. At least not in
+the form we expect in the L-system section. The arrow is wrong!</p>
+<p>Because the data-structure could be anything, we better make it a generic
+parameter. So our first guess for the output type could be
+<code>Result&lt;T, ParserError&gt;</code>, where <code>ParserError</code> is defined as</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+#[derive(Debug, PartialEq)]
+pub enum ParseError {
+    GenericError,
+}
+#}</code></pre></pre>
+<h2><a class="header" href="#combinator" id="combinator">Combinator</a></h2>
+<p>Although our first guess isn't that far off, it is lacking some flexibility.
+What we like to achieve is to easily combine different kind of parsers into a
+more complex one.</p>
+<p>With this goal in mind, we would like to pass information about what part of the
+input still needs parsing. Because we want to feed that into a different parser,
+that type should be <code>&amp;str</code>, our input type.</p>
+<p>So our second guess is <code>Result&lt;(T, &amp;str), ParseError&gt;</code>.</p>
+<p>A Parser returns either a tuple of the parsed result and the rest of the
+input, or it returns an error. </p>
+<h2><a class="header" href="#trait" id="trait">Trait</a></h2>
+<p>We now can create a <code>trait</code> that describes the contract our parsers have. It is
+little more than our consideration, with the correct use of lifetimes to keep
+the compiler happy.</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+pub trait Parser&lt;'a, T&gt; {
+    fn parse(&amp;self, input: &amp;'a str) -&gt; Result&lt;(T, &amp;'a str), ParseError&gt;;
+}
+#}</code></pre></pre>
+<p>So a Parser is anything that has a <code>parse</code> method of the right signature.</p>
+<h2><a class="header" href="#exercises-7" id="exercises-7">Exercises</a></h2>
+<ol>
+<li>Implement the <code>Parser</code> trait and the <code>ParseError</code> enum in <code>src/framework.rs</code>.</li>
+</ol>
+<h1><a class="header" href="#functions-are-parsers" id="functions-are-parsers">Functions are Parsers!</a></h1>
+<p>With our <code>Parser</code> trait in place we can start implementing it. Thinking about
+the trait one implementation springs to mind.</p>
+<p>If we have a function, or a lambda expression for that matter, that has the
+right signature. I.e. accepts a <code>&amp;str</code> and returns a 
+<code>Result&lt;(T, &amp;str), ParseError&gt;</code>, in some sense it is a parser. We just have to
+apply the function! </p>
+<p>Let's start with that implementation.</p>
+<pre><code>impl &lt;'a, T, F&gt; Parser&lt;'a, T&gt; for F where F: Fn(&amp;'a str) -&gt; Result&lt;(T, &amp;'a str), ParseError&gt; {
+    fn parse(&amp;self, input: &amp;'a str) -&gt; Result&lt;(T, &amp;'a str), ParseError&gt; {
+        self(input)
+    }
+}
+</code></pre>
+<h2><a class="header" href="#exercises-8" id="exercises-8">Exercises</a></h2>
+<ol>
+<li>Write the implementation of the <code>Parser</code> trait for <code>Fn(&amp;'a str) -&gt; Result&lt;(T, &amp;'a str), ParserError&gt;</code>.</li>
+</ol>
+<h1><a class="header" href="#parsing-a-char" id="parsing-a-char">Parsing a <code>char</code></a></h1>
+<p>In this chapter we will spend some time explaining how to create a <code>Parser</code>
+capable of parsing a <code>char</code>. We will go through all the motions and explain
+all the steps.</p>
+<p>Our goal for this chapter is to make the following test pass.</p>
+<pre><code>    #[test]
+    fn parse_a_character() {
+        let input = &quot;ABCD&quot;;
+        let parser = character('A');
+
+        let actual = parser.parse(input);
+
+        let expected = Ok(('A', &quot;BCD&quot;));
+        assert_eq!(actual, expected);
+    }
+</code></pre>
+<p>So let's get started.</p>
+<h2><a class="header" href="#character" id="character">Character</a></h2>
+<p>Thinking about the challenge of parsing a <code>char</code> one could notice the following
+things. Giving a certain <code>&amp;str</code>, we need to</p>
+<ol>
+<li>Check if it starts with the correct character.</li>
+<li>If it does, return it and the rest of the <code>&amp;str</code>.</li>
+<li>If it does not, report an error.</li>
+</ol>
+<p>In order to be able to implement the <code>Parser</code> trait, there first needs to be
+something we can implement the <code>Parser</code> trait for. This thing will need to keep
+track of what character to parse.</p>
+<p>We will use a struct <code>Character</code> for that. We will give it a field that tracks
+the intended character to match.</p>
+<pre><code>pub struct Character {
+  character_to_match: char,
+}
+</code></pre>
+<h2><a class="header" href="#impl-parser" id="impl-parser">Impl Parser</a></h2>
+<p>Let's implement <code>Parser</code> for the <code>Character</code> struct. We will be guided by the outline above</p>
+<pre><code>impl&lt;'a&gt; Parser&lt;'a, char&gt; for Character {
+    fn parse(&amp;self, input: &amp;'a str) -&gt; Result&lt;(char, &amp;'a str), ParseError&gt; {
+        if input.starts_with(self.character_to_match) {
+            Ok((self.character_to_match, &amp;input[1..]))
+        } else {
+            Err(ParseError::ExpectingCharacter(self.character_to_match))
+        }
+    }
+}
+</code></pre>
+<p>The first two lines are the signature needed to adhere to the traits contract.
+Next we check if the input starts with the character to match. If it does, we
+return a succesful parse with the matched character and the remaining input.
+Otherwise we announce an error, which we also need to add to our <code>ParseError</code>
+enum.</p>
+<pre><code>#[derive(Debug, PartialEq)]
+pub enum ParseError {
+    GenericError,
+    ExpectingCharacter(char),
+}
+</code></pre>
+<h2><a class="header" href="#constructor" id="constructor">Constructor</a></h2>
+<p>It is convenient to create a <em>constructor</em> for our <code>Character</code> struct. This eases the
+burden of creating a <code>Character</code> parser.</p>
+<pre><code>impl Character {
+    pub fn new&lt;'a&gt;(character_to_match: char) -&gt; impl Parser&lt;'a, char&gt; {
+        Self { character_to_match }
+    }
+}
+</code></pre>
+<p>Notice the return type of our constructor. It hides the implementation details.
+It only tells you that you can expect to get something that implements a <code>Parser</code>
+that returns a <code>char</code> on success.</p>
+<p>This allows us greater flexibility in the future. We can easily change the structure
+of Character without changing the constructor, or code that relies on it.</p>
+<h2><a class="header" href="#factory" id="factory">Factory</a></h2>
+<p>An other convience is the use of a <a href="https://en.wikipedia.org/wiki/Factory_method_pattern">factory</a>. A factory is a pattern that hides the
+details of how an struct is created. It serves yet an other purpose, to use a name that
+reflects the intention, instead of exposing the mechanism of construction.</p>
+<p>So instead of writing <code>Character::new('a')</code>, we want to write <code>character('a')</code>. Under
+the covers this is done by using the constructor for <code>Character</code>.</p>
+<pre><code>pub fn character&lt;'a&gt;(character_to_match: char) -&gt; impl Parser&lt;'a, char&gt; {
+    Character::new(character_to_match)
+}
+</code></pre>
+<h2><a class="header" href="#summary" id="summary">Summary</a></h2>
+<p>Since the <code>Character</code> parser is an example of how parser can be created we are going to
+summarize the steps.</p>
+<ol>
+<li>Choose a datatype that allows the parser to do it's job.</li>
+<li>Implement <code>Parser</code> for it.</li>
+<li>Create a <em>constructor</em>.</li>
+<li>Create a factory.</li>
+</ol>
+<p>The <code>Character</code> parse was build of a struct. Implementing <code>Parser</code> was done by translating
+the parsing process into rust. And constructor and factory were created for ease of use.</p>
+<h2><a class="header" href="#exercises-9" id="exercises-9">Exercises</a></h2>
+<ol>
+<li>Implement the <code>Character</code> parser.</li>
+<li>Write some tests to check your implementation.</li>
+</ol>
+<h1><a class="header" href="#parsing-any-char" id="parsing-any-char">Parsing any <code>char</code></a></h1>
+<p>In a previous chapter we created a parser that could parse a single
+specific character. An other useful parser would parse a string
+would start with any of a group of characters.</p>
+<p>To be more precise. Let's say that we would like to parse a <code>&amp;str</code> if
+it starts with a digit. What we would like to achieve is to pass the 
+following test</p>
+<pre><code>    #[test]
+    fn parse_any_digit() {
+        let input = &quot;0123&quot;;
+        let parser = any(|c: char| c.is_ascii_digit());
+
+        let actual = parser.parse(input);
+
+        let expected = Ok(('0', &quot;123&quot;));
+        assert_eq!(actual, expected);
+    }
+</code></pre>
+<p>We will go through all the motions of creating a parser once more.</p>
+<h2><a class="header" href="#any" id="any">Any</a></h2>
+<p>We will create a struct that will contain everything it needs to
+make our wish come through. For this we need to be able to store
+a <em>predicate</em>, a function that will decide on the characters we
+expect.</p>
+<pre><code>pub struct Any&lt;F&gt; where F: Fn(char) -&gt; bool + Sized {
+    predicate: F,
+}
+</code></pre>
+<p>Here <code>F</code> is an alias for the <code>Fn(char) -&gt; bool + Sized</code> type.
+Our predicate, is a function that accepts a character and tells
+use if it does or does not fall in our category. The <code>Sized</code> restriction
+is necessary because we want to store it in our field.</p>
+<h2><a class="header" href="#impl-parser-1" id="impl-parser-1">Impl Parser</a></h2>
+<p>Next we our going to implement the <code>Parser</code> trait. The basic idea is,
+given our input</p>
+<ol>
+<li>Check if it starts with a character from our category.</li>
+<li>If it does, return it and the rest of the input.</li>
+<li>If it does not, return an error.</li>
+</ol>
+<p>The difference with the <code>Character</code> parser is that <code>String</code> does not have
+a convenience method like <code>starts_with</code> that we can use. Instead we can use
+an <em>iterator</em> over the characters of our input. See below for details.</p>
+<pre><code>impl&lt;'a, F&gt; Parser&lt;'a, char&gt; for Any&lt;F&gt; where F: Fn(char) -&gt; bool + Sized {
+    fn parse(&amp;self, input: &amp;'a str) -&gt; Result&lt;(char, &amp;'a str), ParseError&gt; {
+        let character = input.chars().next();
+        match character {
+            Some(c) =&gt; {
+                if (self.predicate)(c) {
+                    Ok((c, &amp;input[1..]))
+                } else {
+                    Err(ParseError::ExpectingPredicate)
+                }
+            },
+
+            None =&gt; {
+                Err(ParseError::EndOfInput)
+            }
+        }
+    }
+}
+</code></pre>
+<p>We ask our input for an iterator over its characters. Match on the first character
+if it exists, and if it does, check to see if it is in the category. Notice that 
+we introduced two new <code>ParseError</code>s.</p>
+<pre><code>#[derive(Debug, PartialEq)]
+pub enum ParseError {
+    GenericError,
+    ExpectingCharacter(char),
+    ExpectingPredicate,
+    EndOfInput,
+}
+</code></pre>
+<h1><a class="header" href="#constructor-and-factory" id="constructor-and-factory">Constructor and Factory</a></h1>
+<p>The final two steps are to create a constructor and a convenient factory.</p>
+<pre><code>impl&lt;F&gt; Any&lt;F&gt; where F: Fn(char) -&gt; bool + Sized {
+    pub fn new(predicate: F) -&gt; Self {
+        Self { predicate }
+    }
+}
+
+pub fn any&lt;'a, F&gt;(predicate: F) -&gt; impl Parser&lt;'a, char&gt; where F: Fn(char) -&gt; bool + Sized {
+    Any::new(predicate)
+}
+</code></pre>
+<h2><a class="header" href="#summary-1" id="summary-1">Summary</a></h2>
+<p>Just like the first parser we made, we followed a predictable course.</p>
+<ol>
+<li>Choose a datatype that allows the parser to do it's job.</li>
+<li>Implement <code>Parser</code> for it.</li>
+<li>Create a <em>constructor</em>.</li>
+<li>Create a factory.</li>
+</ol>
+<p>This pattern will be repeated many times.</p>
+<h2><a class="header" href="#exercises-10" id="exercises-10">Exercises</a></h2>
+<ol>
+<li>Implement the <code>Any</code> parser.</li>
+<li>Write some tests to check your implementation.</li>
+</ol>
+<h1><a class="header" href="#parsing-a-literal-string" id="parsing-a-literal-string">Parsing a Literal String</a></h1>
+<p>Often you know exactly what you are looking for. E.g. when separating the the
+symbol for its production we use <code>=&gt;</code>. I would come in handy if there was a
+parser that could do that job.</p>
+<pre><code>    #[test]
+    fn parse_literal_arrow() {
+        let input = &quot;=&gt; FF&quot;;
+        let parser = literal(&quot;=&gt;&quot;);
+
+        let actual = parser.parse(input);
+
+        let expected = Ok((&quot;=&gt;&quot;, &quot; FF&quot;));
+        assert_eq!(actual, expected);
+    }
+</code></pre>
+<h2><a class="header" href="#literal" id="literal">Literal</a></h2>
+<p>The only thing that we need to keep track of is the string that we are
+interested in. Rust provides various ways to model your data. <a href="https://doc.rust-lang.org/book/ch05-01-defining-structs.html#using-tuple-structs-without-named-fields-to-create-different-types">Tuple
+structs</a>
+are a convenient way for our use case. It allows one to name a structure by
+describing the fields in a tuple.</p>
+<pre><code>pub struct Literal&lt;'p&gt;(&amp;'p str);
+</code></pre>
+<p>Note that we have a tuple with only one field. It does not have a name so we
+need to reference it by index.</p>
+<h2><a class="header" href="#impl-parser-2" id="impl-parser-2">Impl Parser</a></h2>
+<p>Parsing with a <code>Literal</code> amounts to the following steps</p>
+<ol>
+<li>Check if the input starts with our literal.</li>
+<li>If it does, chop of the parsed string and return it together with the
+remaining input</li>
+<li>If it does not, report an error.</li>
+</ol>
+<p>This translate into code as follows.</p>
+<pre><code>impl &lt;'a, 'p&gt; Parser&lt;'a, &amp;'a str&gt; for Literal&lt;'p&gt; {
+    fn parse(&amp;self, input: &amp;'a str) -&gt; Result&lt;(&amp;'a str, &amp;'a str), ParseError&gt; {
+        if input.starts_with(self.0) {
+            let len = self.0.len();
+            let substr = &amp;input[..len];
+            let rem = &amp;input[len..];
+            Ok((substr, rem))
+        } else {
+            Err(ParseError::ExpectingLiteral(self.0.to_owned()))
+        }
+    }
+}
+</code></pre>
+<p>Take a look at the expected result. It has type <code>&amp;'a str</code>. We will return a
+slice of the input, so the lifetime should match up.</p>
+<h2><a class="header" href="#constructor-1" id="constructor-1">Constructor</a></h2>
+<p>Since tuple structs come with a build int constructor, we do not need to do
+anything here.</p>
+<h2><a class="header" href="#factory-1" id="factory-1">Factory</a></h2>
+<p>The factory for the <code>Literal</code> parser can just be a function <code>literal</code> to returns
+the parser</p>
+<pre><code>pub fn literal(match_exactly: &amp;str) -&gt; Literal {
+    Literal(match_exactly)
+}
+</code></pre>
+<h2><a class="header" href="#exercises-11" id="exercises-11">Exercises</a></h2>
+<ol>
+<li>Implement the <code>Literal</code> parser.</li>
+<li>Create some tests to verify your implementation.</li>
+</ol>
+<h1><a class="header" href="#combinators" id="combinators">Combinators</a></h1>
+<p>We havee implemented a few parser. Each followed the same pattern.</p>
+<ol>
+<li>Choose a datatype that allows the parser to do it's job.</li>
+<li>Implement <code>Parser</code> for it.</li>
+<li>Create a <em>constructor</em>.</li>
+<li>Create a factory.</li>
+</ol>
+<p>This pattern suffices, but it get's tedious. Instead we would rather
+use the power of <em>abstraction</em>. Rather than to depend on the manual
+work to create a parser for each situation, we want to have some 
+primitive parser that we can combine into a more elaborate parser.</p>
+<p>This chapter introduces you to the concept and some considerations
+we will meet along the way.</p>
+<h2><a class="header" href="#what-is-a-combinator" id="what-is-a-combinator">What is a combinator</a></h2>
+<p>In our case a combinator is a <em>higher order</em> parser. It takes one or
+more parsers and <em>combines</em> them into a new parser.</p>
+<p>Let's stare into the future together, in order to better understand
+combinators.</p>
+<p>Imagine that we have a parser that could parse a single rule of a 
+L-system. How we acquired this parser is of no concern. Just that
+we can use it.</p>
+<p>Now as you know, L-systems often have many rules. So we would like
+a parser that could parse many rules. We could use the rule parser
+and manually try to parse a rule, and when it succeed try for the
+next rule.</p>
+<p>This would certainly work! But it would not help in the situation
+where we have a parser to parse a single whitespace and would want
+a parser to parse a many whitespaces. This is a very similar 
+situation to the rule parser, the only difference being the kind
+of parser you want many of.</p>
+<p>Instead we are going to write a <em>combinator</em>. This is a parser that
+accepts as an argument one or more parsers, in our example the rule
+parser or the whitespace parser, and returns a parser that combines
+them in an interesting way. In our example that would be the many
+combinator.</p>
+<h2><a class="header" href="#combinator-pattern" id="combinator-pattern">Combinator Pattern</a></h2>
+<p>What we have described for parser is an example of a more general
+pattern. I.e. the <a href="https://wiki.haskell.org/Combinator_pattern">combinator pattern</a>. It says</p>
+<blockquote>
+<p>complex structures are built by defining a small set of very simple 
+'primitives', and a set of 'combinators' for combining them into 
+more complicated structures. </p>
+</blockquote>
+<p>If you squint hard you can find our explanation of the phenomenon
+for parser in the description.</p>
+<p>So the next few chapters will concentrate on the description of
+various combinators.</p>
+<h1><a class="header" href="#map" id="map">Map</a></h1>
+<p>The first combinator we are going describe is the <code>Map</code> combinator.
+Let's say we have a parser to parse a digit, i.e.
+<code>any(|c: char| c.is_ascii_digit())</code>. But we are not interested in the
+character, but in the integer.</p>
+<p><code>char</code> has a method that can return the numeric value of a digit
+character. It has the following signature. </p>
+<pre><code>pub fn to_digit(self, radix: u32) -&gt; Option&lt;u32&gt;
+</code></pre>
+<p>Notice that the return type is an <code>Option</code>, because if all you have is
+a character, you are not sure how to turn it into a number. E.g. What
+is the value of <code>Y</code>?</p>
+<p>So the code we would like to run is something along the lines of</p>
+<pre><code>    #[test]
+    fn parse_any_digit_as_number() {
+        let input = &quot;1230&quot;;
+        let parser = map(
+          any(|c: char| c.is_ascii_digit()), 
+          |c: char| c.to_digit(10).unwrap_or(0));
+
+        let actual = parser.parse(input);
+
+        let expected = Ok((1, &quot;230&quot;));
+        assert_eq!(actual, expected);
+    }
+</code></pre>
+<p>During the mapping we are unwrapping the option with a default value of
+zero.</p>
+<h2><a class="header" href="#map-1" id="map-1">Map</a></h2>
+<p>With our goal clear, we still are following our strategy. So, let's first
+create a struct.</p>
+<pre><code>pub struct Map&lt;'a, I, O, P, F&gt; where I: 'a, P: Parser&lt;'a, I&gt; + Sized, F: Fn(I) -&gt; O + Sized {
+    parser: P,
+    map: F,
+}
+</code></pre>
+<p>Woah, that signature has a lot of stuff in it. Let's break it done step by step.</p>
+<h3><a class="header" href="#lifetimes--generics" id="lifetimes--generics">Lifetimes &amp; Generics</a></h3>
+<p>First of all there is a lifetime ``a<code>parameter. This lifetime is needed by</code>Parser` and keeps track of the lifetime of the input.</p>
+<p>Next are generic parameters <code>I</code> and <code>O</code>. They are used by the other generic
+parameters <code>P</code> and <code>F</code>.  Almost all of these are aliases.</p>
+<p><code>I</code> is restricted to <code>I: 'a</code>. It should live as long as our input. Together
+with the chosen letter <code>I</code>, it probably stands for some form of input.</p>
+<p><code>P</code> is restricted to <code>P: Parser&lt;'a, I&gt; + Sized</code>. So <code>P</code> is a parser that
+produces an <code>I</code>. For example our <code>any</code> parser is a produces an <code>char</code>.</p>
+<p><code>F</code> is restricted to <code>F: Fn(I) -&gt; O + Sized</code>. Now it becomes clear would
+<code>I</code> and <code>O</code> are. They are the input and output for the function <code>F</code>. So
+<code>F</code> is a function that is used to map the result of parser <code>P</code>, which is
+of type <code>I</code>, into type <code>O</code>.</p>
+<p>Pfew, that was a lot to take in. But with an overview all the parts make
+sense.</p>
+<h3><a class="header" href="#phantomdata" id="phantomdata"><code>PhantomData</code></a></h3>
+<p>Unfortunatly, this will not compile. The compiler warns us of several
+unused parameters. E.g.</p>
+<pre><code class="language-plain">82 | pub struct Map&lt;'a, I, O, P, F&gt; where I: 'a, P: Parser&lt;'a, I&gt; + Sized, F: Fn(I) -&gt; O + Sized {
+   |                ^^ unused parameter
+   |
+   = help: consider removing `'a` or using a marker such as `std::marker::PhantomData`
+</code></pre>
+<p>The advice of removing the lifetime parameter is not an option for us.
+We need it for our parser <code>P</code>. Maybe the other advice is viable.</p>
+<p>The doccumentation of <code>PhantomData</code> reads</p>
+<blockquote>
+<p>Zero-sized type used to mark things that &quot;act like&quot; they own a T.</p>
+<p>Adding a PhantomData<T> field to your type tells the compiler that 
+your type acts as though it stores a value of type T, even though
+it doesn't really. This information is used when computing certain 
+safety properties.</p>
+</blockquote>
+<p>That is precisely our case. What a good compiler our compiler is. So
+we will follow our compilers advice and add a phantom field to our
+struct.</p>
+<pre><code>    phantom: PhantomData&lt;&amp;'a I&gt;,
+</code></pre>
+<p>Which satisfies the compiler.</p>
+<h2><a class="header" href="#impl-parser-3" id="impl-parser-3">Impl Parser</a></h2>
+<p>With our struct out of the way, we should focus on the implementation.
+What we want to achieve is</p>
+<ol>
+<li>Try the parser.</li>
+<li>Map the result with our function, keeping the rest of our input.</li>
+</ol>
+<p>Besides the verbose type signatures this translates very well into Rust.</p>
+<pre><code>impl&lt;'a, I, O, P, F&gt; Parser&lt;'a, O&gt; for Map&lt;'a, I, O, P, F&gt; where I: 'a, P: Parser&lt;'a, I&gt; + Sized, F: Fn(I) -&gt; O + Sized {
+    fn parse(&amp;self, input: &amp;'a str) -&gt; Result&lt;(O, &amp;'a str), ParseError&gt; {
+        let attempt = self.parser.parse(input);
+        attempt.map(|(v, rest)|{ ((self.map)(v), rest)})
+    }
+}
+</code></pre>
+<h2><a class="header" href="#constructor--factory" id="constructor--factory">Constructor &amp; Factory</a></h2>
+<p>Creating the constructor and factory is almost straight forward, albeit
+verbose. Accept the parameters you need and create the <code>Map</code>. The only
+snag is that <code>PhantomData</code>.</p>
+<p>Luckily the way to assign a <code>PhantomData</code> is by doing just that.</p>
+<h2><a class="header" href="#summary-2" id="summary-2">Summary</a></h2>
+<p>We have just created our first combinator! It takes a parser and transforms
+its result into something different.</p>
+<h2><a class="header" href="#exercises-12" id="exercises-12">Exercises</a></h2>
+<ol>
+<li>Implement the <code>Map</code> parser.</li>
+<li>Write some tests to check your implementation.</li>
+</ol>
+<h1><a class="header" href="#between" id="between">Between</a></h1>
+<p>We are capable of parsing, but all the parsers we have seen
+only parse a single character. Let's say we want to parse a
+number instead of a single digit.</p>
+<p>For that we our going to look at the <code>Between</code> parser. We
+expect it to work like the following.</p>
+<pre><code>    #[test]
+    fn parse_between_2_and_4_digits() {
+        let input = &quot;12345&quot;;
+        let parser = between(2, 4, any(|c: char| c.is_ascii_digit()));
+
+        let actual = parser.parse(input);
+
+        let expected = Ok((vec!['1', '2', '3', '4'], &quot;5&quot;));
+        assert_eq!(actual, expected);
+    }
+</code></pre>
+<h2><a class="header" href="#considerations" id="considerations">Considerations</a></h2>
+<p>By now the strategy to creating a parser is not new. Now we have
+to think about what we need to represent this parser. We need
+some sort of lower bound, an upper bound and a parser that we
+want to parse between the lower and upper bound times.</p>
+<p>The lower bound can be just a number. Because you can not parse
+less than zero times, negative numbers are not necessary. The type
+for the lower bound can be any unsigned number. We will settle for
+<code>u8</code>.</p>
+<p>The upper bound is a little trickier. There is no natural limit,
+we could be interested in all characters that match a certain parser.</p>
+<p>To accomadate this we are going to introduce a custom enum <code>Limit</code>.</p>
+<pre><code>pub enum Limit {
+  At(u8),
+  Infinity,
+}
+</code></pre>
+<p>This way we can specify either an unlimited bound, or a bound at a
+specific value.</p>
+<p>Because we likely will want to check if the upper bound is reached,
+we introduce a method that allows use to check that.</p>
+<pre><code>impl Limit {
+  pub fn is_bigger_then(&amp;self, n: u8) -&gt; bool {
+    match self {
+      Limit::At(threshold) =&gt; threshold &gt; &amp;n,
+
+      Limit::Infinity =&gt; true,
+    }
+  }
+}
+</code></pre>
+<p>That are almost all the considerations for the <code>Between</code> struct we
+need. Let's see if you can come up with an implementation. Do note
+that you probably need to think about <code>PhantomData</code> at some point.</p>
+<h2><a class="header" href="#impl-parser-4" id="impl-parser-4">Impl Parser</a></h2>
+<p>So we have a struct that tracks the lower limit, the upper limit and
+the base parser. The implementation strategy is.</p>
+<ol>
+<li>Try to parse as many as the lower limit of items, accumulating the
+result.</li>
+<li>If that fails, report the error.</li>
+<li>If it succeeds, go on to the optional phase.</li>
+<li>Try to parse up to the upper limit of items.</li>
+<li>If that fails, cut your losses and return the accumulated result.</li>
+<li>If that succeeds, return the accumulated result. </li>
+</ol>
+<h2><a class="header" href="#constructor--factory-1" id="constructor--factory-1">Constructor &amp; Factory</a></h2>
+<p>Create an appropriate constructor and factories. See the exercises
+for some factory suggestions.</p>
+<h2><a class="header" href="#summary-3" id="summary-3">Summary</a></h2>
+<p>This combinator is very versatile. It can accomodate a lot of different
+scenarios, depending on how you construct it. Writing factories that
+reflect your needs is always a good strategy.</p>
+<p>On should write code that one wants and write implementations to make
+that happen.</p>
+<h2><a class="header" href="#exercises-13" id="exercises-13">Exercises</a></h2>
+<ol>
+<li>Implement the <code>Between</code> parser.</li>
+<li>Write some tests to check your implementation.</li>
+<li>Introduce some other factories in terms of <code>Between</code></li>
+</ol>
+<ul>
+<li><code>atleast</code>, will parse at least a certain number of items, but
+tries to parse as many as it can from the input.</li>
+<li><code>many</code>, will parse as many items as it can from the input.</li>
+</ul>
+<ol start="4">
+<li>Think and discuss how to do better error reporting. Implement
+your strategy.</li>
+</ol>
+<h1><a class="header" href="#oneof" id="oneof">OneOf</a></h1>
+<p>Sometimes you want to have a choice. E.g. an expression could either be a number
+or a variable. So when parsing an expression you want the option to parse one of
+a number or variable.</p>
+<p>This is where the <code>OneOf</code> parser comes in. It will pass the following test.</p>
+<pre><code>    #[test]
+    fn parse_one_of_a_or_b() {
+        let input = &quot;a1&quot;;
+        let parser = one_of(vec![character('a'), character('b')]);
+
+        let actual = parser.parse(input);
+
+        let expected = Ok(('a', &quot;1&quot;));
+        assert_eq!(actual, expected);
+    }
+</code></pre>
+<h2><a class="header" href="#considerations-1" id="considerations-1">Considerations</a></h2>
+<p>Since the <code>Parser</code> trait can return only a single thing, all of our options in
+the <code>OneOf</code> parser should adhere to the same contract.</p>
+<h2><a class="header" href="#impl-parser-5" id="impl-parser-5">Impl Parser</a></h2>
+<p>Once you have your options our parse strategy would be to try each of our
+options in turn until one of them succeed. If it succeed return the parsed
+result and the remaining input. If none of the options succeed, report an error.</p>
+<h2><a class="header" href="#constructor--factories" id="constructor--factories">Constructor &amp; Factories</a></h2>
+<p>Since there is not very much going on with constructors or factories. From now
+on we will not mention them any more.</p>
+<h2><a class="header" href="#exercises-14" id="exercises-14">Exercises</a></h2>
+<ol>
+<li>Implement the <code>OneOf</code> parser.</li>
+<li>Write some test to check your implementation.</li>
+<li>Think and discuss to do better error handling.</li>
+</ol>
+<h1><a class="header" href="#utilities" id="utilities">Utilities</a></h1>
+<p>This chapter introduces some convenient parsers that we will use when we will be
+parsing more complex structures.</p>
+<h2><a class="header" href="#skip" id="skip">skip</a></h2>
+<p>You are not always interested in what you are parsing. Whitespace is a good
+example. The <code>skip</code> factory creates a parser that allows you to transform a
+parser into one that ignores the result.</p>
+<pre><code>    #[test]
+    fn parse_skip_many_spaces() {
+        let input = &quot;           next&quot;;
+        let parser = skip(many(character(' ')));
+
+        let actual = parser.parse(input);
+
+        let expected = Ok(((), &quot;next&quot;));
+        assert_eq!(actual, expected);
+    }
+</code></pre>
+<p>An implementation can be given in terms of the primitives and the combinators
+already given.</p>
+<h2><a class="header" href="#space--spaces" id="space--spaces">space &amp; spaces</a></h2>
+<p>A useful building block, to ignore, are white space. The following would be a
+nice addition to our utility belt. </p>
+<pre><code>    #[test]
+    fn parse_spaces() {
+        let input = &quot;           \tnext&quot;;
+        let parser = spaces();
+
+        let actual = parser.parse(input);
+
+        let expected = Ok(((), &quot;next&quot;));
+        assert_eq!(actual, expected);
+    }
+</code></pre>
+<p>Don't forget about the fact that a <em>tab</em> character also counts as white space.</p>
+<h2><a class="header" href="#newline" id="newline">newline</a></h2>
+<p>It is nice to be able to know when a line ends. Line ends are signified by
+newline. Depending on the that could be one of <code>\n</code>, <code>\r</code> or <code>\r\n</code>.</p>
+<h2><a class="header" href="#digit" id="digit">digit</a></h2>
+<p>This parser is an intermediate parser for numbers. It would be nice to be able
+to parse a digit.</p>
+<h2><a class="header" href="#number" id="number">number</a></h2>
+<p>Many digits strung together form a number.</p>
+<h2><a class="header" href="#end" id="end">end</a></h2>
+<p>Sometimes we just want to make sure that we completely parsed a structure. I.e.
+nothing of the input should be left over after we are finished parsing.</p>
+<p>An <code>end</code> parser should come in handy with that. It accepts a parser and
+depending on that parser succeeds it will either</p>
+<ul>
+<li><em>when successful with an empty remainder</em> return the result and an empty
+remainder.</li>
+<li><em>when successful with remaining input</em> report an error.</li>
+<li><em>when unsuccessful</em> report the corresponding error.</li>
+</ul>
+<h2><a class="header" href="#exercises-15" id="exercises-15">Exercises</a></h2>
+<ol>
+<li>Implement <code>skip</code> parser. Hint: take a look at <code>map</code></li>
+<li>Implement <code>space</code> and <code>spaces</code> parser. Hint: don't forget about <code>skip</code>.</li>
+<li>Implement <code>newline</code>. Hint: take a look at <code>one_of</code>.</li>
+<li>Implement <code>digit</code>. Hint: take a look at <code>any</code>.</li>
+<li>Implement <code>number</code>. Hint: take a look at <code>many</code> and don't forget about <code>digit</code>.</li>
+<li>Implement <code>end</code>. Hint closure are parsers as well.</li>
+</ol>
+<h1><a class="header" href="#macros" id="macros">Macros</a></h1>
+<p>We have a fair amount of basic parsers and lovely combinators for them. But
+there is one thing missing. All the parsers we have so far can only parse one
+thing.</p>
+<p>Give a parser an input, it will try do its job, return the result and the rest
+of the input. But if we want to parse complex structures, we need to be able to
+proceed parsing an that rest of the input. We need to be able to chain different
+parser together, one after the other.</p>
+<h2><a class="header" href="#what-we-want-to-achieve" id="what-we-want-to-achieve">What we want to achieve</a></h2>
+<p>Let's say we want to parse something that looks like a L-system rule. Remember,
+it starts with a symbol, followed by a literal <code>=&gt;</code> and at last a sequence of
+symbols.</p>
+<p>What needs to be done is that we feed the remainder of one parser into the next.
+Something along the lines of</p>
+<pre><code>let rem = input;
+let (symbol, rem) = symbol_parser.parse(rem)?
+let (_, rem) = literal('=&gt;').parse(rem)?
+let (production, rem) = at_least(1, symbol_parser).parse(rem)?
+</code></pre>
+<p>Once we have the symbol and its production we can combine them to form a rule.</p>
+<p>Although this is not hard, there is a lot of plumbing that is neither
+interesting or exciting. We would rather focus on chaining the parsers and
+combing their results.</p>
+<h2><a class="header" href="#declarative-macros" id="declarative-macros">Declarative Macros</a></h2>
+<p>Rust has a great mechanism to aid in our search for expressiveness. It are
+<a href="https://doc.rust-lang.org/book/ch19-06-macros.html#declarative-macros-with-macro_rules-for-general-metaprogramming">declarative macros</a>.</p>
+<p>Declarative macros</p>
+<blockquote>
+<p>allow you to write something similar to a Rust match expression. As discussed
+in Chapter 6, match expressions are control structures that take an
+expression, compare the resulting value of the expression to patterns, and
+then run the code associated with the matching pattern. Macros also compare a
+value to patterns that are associated with particular code: in this situation,
+the value is the literal Rust source code passed to the macro; the patterns
+are compared with the structure of that source code; and the code associated
+with each pattern, when matched, replaces the code passed to the macro. This
+all happens during compilation </p>
+</blockquote>
+<p>They are ideal for our situation.</p>
+<h1><a class="header" href="#parsing-a-sequence" id="parsing-a-sequence">Parsing a sequence</a></h1>
+<p>We would like to parse a sequence of things. First this, followed by that and
+finally this thing again. At the moment we have no way of describing that. Let's
+remedy that.</p>
+<p>What we want to achieve is to make the following test pass.</p>
+<pre><code>    #[test]
+    fn parse_a_sequence_of_parsers() {
+        let parser = sequence!{
+            let a = character('A'),
+            let b = character('b')
+            =&gt;
+            (a, b)
+        };
+
+        let (result, rem) = parser.parse(&quot;Ab&quot;).expect(&quot;failed to parse&quot;);
+        
+        assert_eq!(('A', 'b'), result);
+        assert!(rem.is_empty());
+    }
+</code></pre>
+<h2><a class="header" href="#what-do-we-want" id="what-do-we-want">What do we want</a></h2>
+<p>As stated in the Macros chapter, we want to sequence parsers without having to
+write all the boilerplate. As detailed in the test code above, we want to focus
+on the result of parsers and combine those results in interesting ways.</p>
+<p>The pattern that we picked is, one or more lines of</p>
+<pre><code>let identifier = parser,
+</code></pre>
+<p>We would like to translate the above lines into something like</p>
+<pre><code>let (identifier, remainder) = parser.parse(remainder)?
+</code></pre>
+<p>I.e. pass the remaining input to the parser to parse, collect the result and
+bind it to the identifier and rebind the remainder.</p>
+<p>Once all the parser sequences have done their job, we would like to collect all
+the parse results in some meaningful manner. E.g. if we have parsed an <code>'A'</code>
+followed by a <code>'b'</code>, we would return a tuple containing both results. More
+general we want to return some form of expression involving the parse results.</p>
+<h2><a class="header" href="#macros-to-the-rescue" id="macros-to-the-rescue">Macros to the rescue</a></h2>
+<p>Luckily macros are well suited for the task. Look at the following code. We will
+explain it in detail.</p>
+<pre><code>#[macro_export]
+macro_rules! sequence {
+    ( $(let $name:ident = $parser:expr),+ =&gt; $finish:expr ) =&gt; {{
+        |input| {
+            let rem = input;
+            $(
+                let ($name, rem) = $parser.parse(rem)?;
+            )*
+            let result = $finish;
+            Ok((result, rem))
+        }
+    }};
+}
+</code></pre>
+<h3><a class="header" href="#macro_export-attribute" id="macro_export-attribute"><code>macro_export</code> attribute</a></h3>
+<p>Let's start at the top. The <code>macro_export</code> attribute tells us that we would like
+to make this macro available whenever the crate is in scope.</p>
+<h3><a class="header" href="#macro_rules-macro" id="macro_rules-macro"><code>macro_rules!</code> macro</a></h3>
+<p>The way to define a macro is by using the <code>macro_rule</code> macro. It will accept a
+name and shapes that the macro should accepts and how they are translated.</p>
+<p>In our case are creating a macro called <code>sequence</code>.</p>
+<h3><a class="header" href="#the-pattern" id="the-pattern">The pattern</a></h3>
+<p>The pattern our macro accepts is defined next. It is </p>
+<pre><code>( $(let $name:ident = $parser:expr),+ =&gt; $finish:expr )
+</code></pre>
+<p>First let's focus on <code>let $name:ident = $parser:expr</code>. It expresses how we want
+to string a results of parser. This pattern will try to match expressions like</p>
+<pre><code>let a = character('A')
+</code></pre>
+<p>first the literal <code>let</code> next something that looks like an identifier, <code>a</code> in this
+case. if it succeeds bind the identifier to the <code>$name</code> variable. Next comes a
+literal <code>=</code> followed by something that looks like any Rust expression,
+<code>characcter('A')</code> in our example, and bind that expression to the <code>$parser</code>
+variable.</p>
+<p>Notice that that entire pattern is surrounded by <code>$( ),+</code>. The plus tells us
+that we need at least one, but are allowed more repetition of what ever pattern
+is between the brackets, separated by an (final optional) comma.</p>
+<p>Next there is a literal <code>=&gt;</code> followed by something that looks like any rust
+expression. If that matches bind the expression to the <code>$finish</code> expression.</p>
+<h3><a class="header" href="#the-substitutions" id="the-substitutions">The substitutions</a></h3>
+<p>Declarative macros in Rust work by taking the pattern and providing a
+substitution, that needs to adhere to some rules. </p>
+<pre><code>    {{
+        |input| {
+            let rem = input;
+            $(
+                let ($name, rem) = $parser.parse(rem)?;
+            )*
+            let result = $finish;
+            Ok((result, rem))
+        }
+    }};
+</code></pre>
+<p>Now this substitution will be replaced with the data that is gathered when
+matching the syntax. We notice that it will return a lambda expression that
+accepts input, and returns a pair of result and the remaining input. I.e. it is
+a parser.</p>
+<p>What is returned is in effect handled by </p>
+<pre><code>            $(
+                let ($name, rem) = $parser.parse(rem)?;
+            )*
+</code></pre>
+<p>The <code>$( )*</code> will output its contents for each of the matching parts.</p>
+<h2><a class="header" href="#exercises-16" id="exercises-16">Exercises</a></h2>
+<ol>
+<li>Implement and test the <code>sequence!</code> macro.</li>
+<li>Often white space is not that interesting. Create a macro that allows and
+ignores whitespace between the different parsers.</li>
+<li>Sometimes we want to create some variables and move them in the closure.
+Create a <code>move_sequence</code> macro that moves the environment.</li>
+</ol>
+<h1><a class="header" href="#use-the-framework" id="use-the-framework">Use the framework</a></h1>
+<p>We have created a parser combinator framework that allows us to create a parser
+that parses the L-systems by combining primitive parser into more elaborate
+parsers.</p>
+<p>In this chapter we will work towards that goal. It will be one of the most
+challenging chapters in this book. You are asked to use your creative mind to
+fill in the gaps.</p>
+<h2><a class="header" href="#high-level-description" id="high-level-description">High level description</a></h2>
+<p>We will give a top down description of the structure of the L-system format.
+This identifies goals to reach and helps with achieving</p>
+<p>When seeing the L-system format from a mile away, it seems to consist of two
+parts. First is the configuration section, which defines common settings for the
+interpretation of the L-system.
+Next is some number of blank lines followed by the actual rules of the system.</p>
+<h3><a class="header" href="#config-2" id="config-2">Config</a></h3>
+<p>The <em>configuration</em> section is started with a <em>header</em>, i.e. a literal <code>config</code> followed
+by a colon and a newline.</p>
+<p>Next are two key value pairs. A key value pair is a an literal key followed by
+an equal sign and a certain value. The first key value pair is the <em>step</em>, which
+assigns the <em>number</em> of times the system needs to be iterated.
+After that the <em>angle</em> which determines the <em>number</em> of degrees a turtle should
+rotate.</p>
+<h3><a class="header" href="#rules-4" id="rules-4">Rules</a></h3>
+<p>Just like the configuration section is the <em>rules</em> section started with it's own
+header. This time the header identifier is <code>rules</code>.</p>
+<p>Next comes a the seed for the system, i.e the <em>axiom</em> which is a key value pair
+which should be at least 1 <em>symbol</em>.</p>
+<p>Following that are many <em>rules</em>. Each <em>rule</em> is described by a <em>symbol</em> that
+will be mapped onto its <em>production</em>, i.e. a sequence of at least 1 symbol.</p>
+<h2><a class="header" href="#exercises-17" id="exercises-17">Exercises</a></h2>
+<p>Use the parser combinator framework to create a parser that can parser system
+files. Make sure to test your parser building blocks.</p>
+<p>Don't forget to alter the <code>parse</code> function to use the parser you created.</p>
+<h1><a class="header" href="#interpreter-1" id="interpreter-1">Interpreter</a></h1>
+<p>In the Parser section we created a parser for <code>.ls</code> files that could return a
+L-system data structure. We would now like to interpret this data structure in
+order to evolve the L-system a number of iterations.</p>
+<p>The Interpreter section will guide use along that path and describes how to
+create software that can interpret our L-system and evolve the start word.</p>
+<p>Make sure to look in to <a href="dependencies.html">working with dependencies</a> to find out
+how to incorporate your code into the project.</p>
+<h1><a class="header" href="#what-is-an-interpreter" id="what-is-an-interpreter">What is an Interpreter</a></h1>
+<p>One could view an L-system as a kind of programming language. It describes in a
+declarative way how to produce a series of symbols. What we will do in this
+section is write an interpreter.</p>
+<p>An <a href="https://en.wikipedia.org/wiki/Interpreter_(computing)">interpreter</a> is</p>
+<blockquote>
+<p>is a computer program that directly executes instructions written in a
+programming or scripting language, without requiring them previously to have
+been compiled into a machine language program</p>
+</blockquote>
+<p>In our case the instructions is the L-system, as parsed by our parser. Execution
+is producing the series of symbols for a certain level.</p>
+<h1><a class="header" href="#signature" id="signature">Signature</a></h1>
+<p>Let's think about the signature of the interpreter. We do this by coming up with
+a code example that we would like to write. This will guide our thoughts towards
+an API that is easy to work with. Below you find our dream code.</p>
+<pre><code>let interpreter = Interpreter::new(system);
+
+let word = interpreter.level(4);
+
+println!(&quot;{:?}&quot;, word)
+</code></pre>
+<p>We assume that we have a L-system bound to the variable <code>system</code>. It does not
+really matter where we got the system from, just assume that we have it for now.</p>
+<p>We would like to create a <code>Interpreter</code> for this system by calling the <code>new</code>
+constructor.</p>
+<p>Next we would like to ask the interpreter for the <code>word</code> that is produced by
+iterating the L-system a number of times. This should produce a vector of
+symbols.</p>
+<h2><a class="header" href="#interpreter-struct" id="interpreter-struct">Interpreter Struct</a></h2>
+<p>Our dream code tells us a lot about the structure of our interpreter. Let's
+flesh out some of the details to make our dreams come true.</p>
+<pre><code>use api::{LSystem, Symbol};
+
+pub struct Interpreter&lt;T&gt; where T: Symbol {
+    lsystem: LSystem&lt;T&gt;
+}
+</code></pre>
+<p>We create a struct that will be the target for all of our dreams. It keeps track
+of a <code>LSystem</code>. If you need a refresher about the api module, go read that
+section.</p>
+<h2><a class="header" href="#impl-interpreter" id="impl-interpreter">Impl Interpreter</a></h2>
+<p>We can make a start with implementing the interpreter.</p>
+<pre><code>impl &lt;T&gt; Interpreter&lt;T&gt; where T: Symbol {
+    pub fn new(lsystem: LSystem&lt;T&gt;) -&gt; Self {
+        Self { lsystem }
+    }
+
+    pub fn level(&amp;self, n : usize) -&gt; Vec&lt;T&gt; {
+        vec![] // TODO actual interpret the system
+    }
+}
+</code></pre>
+<p>the <code>new</code> constructor accepts an <code>LSystem</code>, making sure to take ownership of it.
+Other than the <code>level</code> function. There is not much going on. Note that we still
+have something to do.</p>
+<h2><a class="header" href="#exercises-18" id="exercises-18">Exercises</a></h2>
+<ol>
+<li>Implement the <code>Interpreter</code> struct.</li>
+</ol>
+<h1><a class="header" href="#level" id="level"><code>level</code></a></h1>
+<p>In this chapter we get down to the brass tacks and implement the <code>level</code>
+function of the <code>Interpreter</code>.</p>
+<h2><a class="header" href="#process" id="process">Process</a></h2>
+<p>As we learned in the L-system section, interpretation of the system comes down
+to repeatedly iterating the following</p>
+<ol>
+<li>Take the current <em>word</em></li>
+<li>Replace each <em>symbol</em> with it's production.</li>
+</ol>
+<p>A word for is a vector of symbols. A symbol is anything that implements the
+<code>Symbol</code> trait.</p>
+<p>Knowing the production for each symbol is the job of the L-system, specifically
+the rules of the L-system.</p>
+<p>To start this process of, we need a jumping of point. Our <code>axiom</code>. Is exactly
+what we need.</p>
+<p>So it seems that we have everything in place to get started.</p>
+<h2><a class="header" href="#successors" id="successors"><code>successors</code></a></h2>
+<p><a href="https://doc.rust-lang.org/std/iter/index.html">Iterators</a> are ubiquitous in Rust. From the documentation</p>
+<blockquote>
+<p>If you've found yourself with a collection of some kind, and needed to perform
+an operation on the elements of said collection, you'll quickly run into
+'iterators'. Iterators are heavily used in idiomatic Rust code, so it's worth
+becoming familiar with them.</p>
+</blockquote>
+<p>Since we want to iterate our process, iterators should fit the bill. And Rust
+doesn't disappoint.</p>
+<p>In the standard library there is an iterator <a href="https://doc.rust-lang.org/std/iter/fn.successors.html"><code>Successors</code></a> that is
+perfect for our scenario. We only need to provide the first item and the
+<code>succ</code> function that compute each item's successor</p>
+<h2><a class="header" href="#first" id="first">first</a></h2>
+<p>The first item of our successors iterator it the axiom of our L-system. Because
+we need to transfer ownership to the caller, we better clone the axiom before
+iterating on it.</p>
+<pre><code>let start: Vec&lt;T&gt; = self.lsystem.axiom.iter().cloned().collect();
+</code></pre>
+<h2><a class="header" href="#succ" id="succ"><code>succ</code></a></h2>
+<p>The <code>succ</code> function signature is <code>FnMut(&amp;Vec&lt;T&gt;) -&gt; Option&lt;Vec&lt;T&gt;&gt;</code>. It is
+called with the our current word, and should return the successor.</p>
+<pre><code>|word|{
+    let next = word.iter().flat_map(|symbol| self.lsystem.rules.apply(*symbol)).collect();
+    Some(next)
+})
+</code></pre>
+<p>Let's unpack that, on step at the time.</p>
+<p>To access the individual symbols in our word we iterate over them with
+<code>word.iter()</code>. Next we want to map each symbol to its production, hence the
+<code>|symbol| self.lsystem.rules.apply(*symbol)</code>. But since each production is a
+vector of symbols in itself, we use a <a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.flat_map">flat map</a> instead of a regular
+map. Since we want a <code>Vec&lt;T&gt;</code> at some point we <code>collect</code> the successor.</p>
+<h2><a class="header" href="#putting-it-together" id="putting-it-together">Putting it together</a></h2>
+<p>All the moving parts of the implementation are in place, we just have to put
+together.</p>
+<pre><code>pub fn level(&amp;self, n : usize) -&gt; Vec&lt;T&gt; {
+    let start: Vec&lt;T&gt; = self.lsystem.axiom.iter().cloned().collect();
+    successors(Some(start), |word|{
+        let next = word.iter().flat_map(|symbol| self.lsystem.rules.apply(*symbol)).collect();
+        Some(next)
+    }).nth(n).unwrap() // there should always be an production
+}
+</code></pre>
+<p>One final trick can be found at the end. It uses the <code>nth</code> function on
+<code>Iterator</code>s to pick the word we want. Since we always produce an next word, the
+unwrap can be safely done.</p>
+<h2><a class="header" href="#exercises-19" id="exercises-19">Exercises</a></h2>
+<ol>
+<li>Implement the <code>level</code> function of our interpreter.</li>
+<li>Test your <code>Interpreter</code>.</li>
+</ol>
+<h1><a class="header" href="#renderer-1" id="renderer-1">Renderer</a></h1>
+<p>With a working parser and interpreter for L-systems, it is time to work on
+rendering. Rendering concerns itself providing a translation between the 
+L-systems words that occur from the start word and some kind of visualization.</p>
+<p>Make sure to look in to <a href="dependencies.html">working with dependencies</a> to find out
+how to incorporate your code into the project.</p>
+<h1><a class="header" href="#renderer-2" id="renderer-2">Renderer</a></h1>
+<p>A Renderer takes the sequence of productions from the L-system and displays them in some way. We've included an example renderer that simply prints each symbol to stdout. This is really useful for debugging, but it's not very pretty to look at.</p>
+<p>In this workshop, we're going to create a new Renderer implementation that uses turtle graphics to render the productions from our l-system as two dimensional line drawings. Turtle graphics is an approach that uses an API that's conceptually based on a <em>pen</em> that is controlled by giving it a sequence of instructions. For example, <code>go forward 2 steps, turn right, go forward 1 step, turn right, go forward 2 steps</code>. Of course a pen is an inanimate object and they're terrible at following instructions, so traditionally a turtle is in charge of the pen, though in our case it will be a crab instead. The crab will faithfully carry our each of the instructions in order to create our image.</p>
+<h2><a class="header" href="#renderer-api" id="renderer-api">Renderer API</a></h2>
+<p>To start with, our renderer trait looks like this:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+pub trait Renderer {
+    /// Called at the very beginning of the entrypoint to our program so that the renderer can create a window if needed
+    fn global_init() where Self: Sized {}
+
+    /// Render the given symbol. This will get called repeatedly in order to create our images
+    fn render(&amp;mut self, symbol: impl Symbol);
+
+    /// Signals that the final instruction has been given and we can clean up and do any finalization that's required
+    fn finish(&amp;mut self) {}
+}
+#}</code></pre></pre>
+<p>In the next sections, we'll go over each of the <code>Renderer</code> functions in more detail.</p>
+<h1><a class="header" href="#renderer-initialization" id="renderer-initialization">Renderer Initialization</a></h1>
+<p>Each operating system provides its own APIs for drawing images to the screen, and these APIs are sometimes fairly complex. Typically, there's a need to create a window, which you can then draw into. The APIs also provide ways to get input events from the user's mouse and keyboard. We want our L-systems renderer to run on a variety of platforms, and so we must program to the lowest common denominator of all the platforms we wish to support. The first function declared on the <code>Renderer</code> trait is <code>fn global_init()</code>.</p>
+<p>The <code>global_init</code> function is the very first thing that's called when our application starts up. We'll use this function to create a window that we can draw into. Windowing and event handling apis can be relatively complex, and every platform has its own quirks. It's common for the operating system to require that window creation is done very early in the application lifecycle, so we'll always call this function right away in our application's main function. It's important that we call this function <em>before</em> we do things like parsing arguments or writing to stdout and stderr.</p>
+<h2><a class="header" href="#implementation" id="implementation">Implementation</a></h2>
+<p>Our implementation of <code>global_init</code> is pretty easy, since the turtle crate handles all the cross platform complexities for us. We just need to call the <a href="https://docs.rs/turtle/1.0.0-rc.2/turtle/fn.start.html"><code>turtle::start()</code></a> function.</p>
+<h1><a class="header" href="#basic-renderer-configuration" id="basic-renderer-configuration">Basic Renderer Configuration</a></h1>
+<p>Our renderer instructions are very simple and abstract. For example, to draw a straight line we would use the <code>Forward</code> instruction. The <code>Forward</code> instruction doesn't itself say <em>how far</em> to move. That is instead specified in a separate struct as the <code>step</code> field. Whenever we execute the <code>Forward</code> instruction, <code>step</code> tells us how far to move. Why would these be separate? The answer is that the language we use to describe the L-system has no way to maintain state. The Renderer implementation is responsible for maintaining the state of the current <code>step</code> and <code>angle</code>, but the initial values are specified in the <code>RendererConfig</code>.</p>
+<p>The basic <code>RendererConfig</code> struct looks something like:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+pub struct RendererConfig {
+    pub step: u16,
+    pub angle: u16,
+}
+#}</code></pre></pre>
+<p>We'll want a function that takes the configuration as a parameter and returns a new <code>Crab</code> struct that's ready to use.</p>
+<h1><a class="header" href="#turtle-crab-rendering" id="turtle-crab-rendering">Turtle (Crab) Rendering</a></h1>
+<p>Ok, so we have a <code>Crab</code> that's brandishing a pen, and we've got everything initialized and configured. So how do we actually work with this thing?
+The <code>Turtle</code> API is pretty simple and straightforward. It's easy to implement each individual rendering instruction. The complexity of how multiple instructions are combined to draw interesting shapes will be left to the L-systems.</p>
+<p>The <code>render</code> function is where the magic happens. This function will be invoked many times, once for each <code>Symbol</code> that's produced by the L-system, based on the axiom and number of iterations. The first thing we need to do is to convert the <code>Symbol</code> into a  <code>RendererInstruction</code>. Then we can use pattern matching to determine what to do. This would look something like the following:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+fn render(&amp;mut self, symbol: impl Symbol) {
+    match symbol.to_rendering_instruction() {
+        RendererInstruction::Forward =&gt; self.forward(),
+        RendererInstruction::RotateLeft =&gt; self.rotate_left(),
+        RendererInstruction::RotateRight =&gt; self.rotate_right(),
+        RendererInstruction::NoOp =&gt; { /* no-op just means that the Symbol didn't map to any particular rendering instruction */ },
+        /* .... remainder omitted for brevity */
+    }
+}
+#}</code></pre></pre>
+<p>Since this pattern matching isn't particularly interesting, we'll update our <code>Renderer</code> trait to provide the implementation on the trait itself, which will just delegate to named functions for each instruction. We'll add a function to the <code>Renderer</code> trait for each instruction so that the code will be more readable. So instead of implementing <code>render</code> directly, we'll just implemet each of the specific functions like <code>forward</code>, <code>rotate_left</code>, <code>rotate_right</code>, <code>push</code>, <code>pop</code>, etc. So now our <code>Renderer</code> trait will look more like this:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+pub trait Renderer {
+    fn global_init() where Self: Sized {}
+
+    fn render(&amp;mut self, instruction: RendererInstruction) {
+        match instruction {
+            RendererInstruction::Forward =&gt; self.forward(),
+            RendererInstruction::RotateLeft =&gt; self.rotate_left(),
+            RendererInstruction::RotateRight =&gt; self.rotate_right(),
+            RendererInstruction::Push =&gt; self.push(),
+            RendererInstruction::Pop =&gt; self.pop(),
+            RendererInstruction::NoOp =&gt; { /* no-op */ },
+        }
+    }
+
+    fn forward(&amp;mut self) {}
+    fn push(&amp;mut self) {}
+    /* .... remainder of functions omitted for brevity */
+
+    fn finish(&amp;mut self) {}
+}
+
+impl Renderer for Crab {
+    fn forward(&amp;mut self) { /* move forward */ }
+    fn rotate_left(&amp;mut self) { /* ... */ }
+    fn forward(&amp;mut self) { /* ... */ }
+}
+#}</code></pre></pre>
+<h3><a class="header" href="#forward" id="forward">Forward</a></h3>
+<p>The <code>Forward</code> instruction moves the crab forward by the <code>step</code>, drawing a straight line along the way. Implementing this is quite simple. Just call the <a href="https://docs.rs/turtle/1.0.0-rc.2/turtle/struct.Turtle.html#method.forward"><code>Turtle::forward</code></a> function, passing in the current value for <code>step</code>.</p>
+<h3><a class="header" href="#rotation" id="rotation">Rotation</a></h3>
+<p><code>RotateLeft</code>, <code>RotateRight</code> rotate the crab in place. &quot;Right&quot; means clockwise, and &quot;left&quot; means counter-clockwise. Keep in mind that we're using degrees instead of radians (although, this is a fairly arbitrary decision and it's also reasonable for an l-system to use radians).</p>
+<h1><a class="header" href="#renderer-state-management" id="renderer-state-management">Renderer State Management</a></h1>
+<p>You'll notice that our <code>RendererInstruction</code> enum includes operations for <code>Push</code> and <code>Pop</code>. These instructions are important for rendering more complex shapes because they allow us to &quot;save&quot; the state of the renderer and go back to it later. As you probably guessed, the renderer states are &quot;saved&quot; by pushing them onto a stack using the <code>Push</code> instruction. We can then re-load that saved state by <code>Pop</code>ing from the stack.</p>
+<h3><a class="header" href="#state" id="state">State</a></h3>
+<p>Here's an example of how we can represent this state:</p>
+<pre><code>struct State {
+    position: turtle::Point,
+    heading: turtle::Angle,
+    step: u16,
+}
+</code></pre>
+<p>Our <code>Crab</code> can use a <code>Vec&lt;State&gt;</code> as a stack. Whenever a <code>Push</code> instruction is executed, we capture the current state and push it onto the stack. Whenever a <code>Pop</code> instrution is executed, we'll pop a State from the stack and set the location, heading, etc. of our crab. Simple! Using <code>Push</code> and <code>Pop</code> instructions is what allows for some really complex and interesting images.</p>
+<h1><a class="header" href="#why-stop-here" id="why-stop-here">Why stop here</a></h1>
+<p>You have done something awesome! You have explored the wonderful world of
+L-systems. You have created software to be able explore interesting aspects of
+L-systems, parsers, interpreters and how they interact.</p>
+<p>But known this is only a tip of the iceberg. There are a lot of things to
+explore further. And this chapter is shining some light into the adventurous
+world of exploration.</p>
+<p>Don't take it as a travelers guide. We ourselves are as oblivious as the next
+person when it comes to what you want to delve into. Feel free to follow your
+own interest and amaze us with your thoughts and creations.</p>
+<h2><a class="header" href="#more-rendering-instructions" id="more-rendering-instructions">More Rendering Instructions</a></h2>
+<p>We're able to create some awesome drawings, even with our basic set of rendering instructions. There's a lot of additional instructions that we could add in order to create increasingly complex images. Some of these instructions may also imply additional values in the <code>RenderConfig</code>.</p>
+<ul>
+<li>Instructions to increase and decrease the <code>step</code>
+<ul>
+<li>The amount to increase/decrease can be a configurable <code>step_multiplier</code> in the <code>RenderConfig</code></li>
+</ul>
+</li>
+<li>Instructions to increase and decrease the <code>angle</code>
+<ul>
+<li>The amount to increase/decrease can be a configurable <code>angle_multiplier</code> in the <code>RenderConfig</code></li>
+</ul>
+</li>
+<li>Instructions to increase and decrease the line width
+<ul>
+<li>The renderer config should include a starting value for the line width</li>
+<li>The amount to increase/decrease can be a configurable <code>line_width_multiplier</code> in the <code>RenderConfig</code></li>
+</ul>
+</li>
+<li>Instructions to change the pen color
+<ul>
+<li>The renderer config should include a starting value for the pen color</li>
+<li>How you change this could be simple or very complex. You could have separate instructions for each of a limited number of colors (e.g. <code>SetPenColorRed</code>), or you could create instructions for manipulating RGBA values independently. This could quickly get pretty complex, but it could also allow for some fancy coloring!</li>
+</ul>
+</li>
+</ul>
+<h2><a class="header" href="#additional-renderer-configuration" id="additional-renderer-configuration">Additional Renderer Configuration</a></h2>
+<p>Currently the parser for the <code>RenderConfig</code> only allows to define the step size and the angle. It may be good to add additional configuration items to support the new instructions suggested above.</p>
+<p>Also, there's a lot of things you may want to configure more statically, like:</p>
+<ul>
+<li>Configure the starting position and heading of the Crab</li>
+<li>Configure the size of the canvas</li>
+<li>Configure the background and pen colors</li>
+</ul>
+<h2><a class="header" href="#make-all-length-units-relative" id="make-all-length-units-relative">Make all length units relative</a></h2>
+<p>Our current implementation uses pixels as the unit for all distances, since that's what the turtle crate uses. This makes it sensitive to different resolutions. We could instead make these units relative to the size of the window, so that the images look good regardless of the size of the window or monitor.</p>
+<h2><a class="header" href="#parser-framework-1" id="parser-framework-1">Parser Framework</a></h2>
+<p>Maybe you have discovered some recurring pattern while writing your parsers.
+This is an ideal target for create your own combinators. Go back and examine
+your code to see where some form of abstraction could be teased from it.</p>
+<h2><a class="header" href="#improved-interpreter" id="improved-interpreter">Improved Interpreter</a></h2>
+<p>Currently the <code>Interpreter</code> returns the resulting word in one go, which requires storing the entire array of symbol productions in memory. You also have learned that words in L-systems can grow very quickly. This is a recipe for disaster.</p>
+<p>Instead of returning the word in it's entirety, you could return an iterator over the word. This allows some flexibility how to iterate over the words.</p>
+<p>One other way is to use a stack with the parts of words to progress combined with the level of iteration. Once the level reached zero, we can push the symbols out.</p>
+<h2><a class="header" href="#decouple-the-l-system-and-the-rendering" id="decouple-the-l-system-and-the-rendering">Decouple the L-system and the Rendering</a></h2>
+<p>The L-system itself if just about symbol substitution. The symbols themselves don't have any intrinsic meaning. The fact that there's a <code>config:</code> section in our l-system file is less than ideal because it couples the interpreter and the renderer. Ideally, the two would be totally separate.</p>
+<p>One idea to decouple these would be to write the interpreter and renderer as completely separate binaries. The interpreter would simply output a final sequence of symbols to stdout. The renderer would read a sequence of symbols from stdin and interpret them as rendering instructions. You could easily pipe the output of the interpreter into the renderer. This would make it really easy to try out different renderers for the same L-system!</p>
+<h1><a class="header" href="#working-with-dependencies" id="working-with-dependencies">Working with Dependencies</a></h1>
+<p>There are two different goals for this workshop. First is to allow you to play
+with L-systems. Second is to allow you to code your own L-system, and then play
+with that.</p>
+<p>In order to facilitate that the code makes use of path dependencies. That way we
+can easily transition from relying on provided code to relying on your own code.</p>
+<h2><a class="header" href="#mechanism" id="mechanism">Mechanism</a></h2>
+<p>If you take a look at the <code>Cargo.toml</code> file you will notice the <code>[dependencies]</code>
+table has a lot of path dependencies. E.g. we have a dependency on <code>parser</code>
+which can be found at <code>examplar-parser</code>, according to the following snippet.</p>
+<pre><code class="language-toml">[dependencies]
+parser = { path = &quot;examplar-parser&quot; }
+</code></pre>
+<h3><a class="header" href="#your-code" id="your-code">Your code</a></h3>
+<p>Every <code>examplar-*</code> library has a regular counter-part. I.e. besides
+<code>examplar-parser</code> there is also <code>parser</code> library. This library has some skeletal
+code. It is an ideal starting ground for working on your own code.</p>
+<h3><a class="header" href="#hooking-up-your-code" id="hooking-up-your-code">Hooking up your code</a></h3>
+<p>Once you are comfortable with your code, it is time to hook it up to the main
+executable. This way you can play with your own L-system.</p>
+<p>This is done by changing the top-level <code>Cargo.toml</code>. Specifically the
+<code>[dependencies]</code> table. For the <code>[dependencies]</code> you need to point to the correct
+path. E.g. for the parser dependency the path should be <code>parser</code> if you want to
+use your own code. </p>
+<h3><a class="header" href="#enjoy-your-l-system" id="enjoy-your-l-system">Enjoy your L-System</a></h3>
+<p>If everything works out, you should be able to enjoy your own L-system
+framework.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+        
+        
+
+    </body>
+</html>

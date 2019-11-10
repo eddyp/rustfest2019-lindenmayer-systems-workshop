@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Renderer State Management - L-Systems</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="A compendium to the L-Systems workshop">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="../outline.html"><strong aria-hidden="true">2.</strong> Outline</a></li><li><a href="../l-system.html"><strong aria-hidden="true">3.</strong> L-system</a></li><li><ol class="section"><li><a href="../lsystem/Aristid.html"><strong aria-hidden="true">3.1.</strong> Aristid Lindenmayer</a></li><li><a href="../lsystem/algae.html"><strong aria-hidden="true">3.2.</strong> Algae</a></li><li><a href="../lsystem/algae.ls.html"><strong aria-hidden="true">3.3.</strong> algae.ls</a></li><li><a href="../lsystem/koch.ls.html"><strong aria-hidden="true">3.4.</strong> koch.ls</a></li><li><a href="../lsystem/config.html"><strong aria-hidden="true">3.5.</strong> config</a></li><li><a href="../lsystem/plant.html"><strong aria-hidden="true">3.6.</strong> Plant</a></li><li><a href="../lsystem/crab.html"><strong aria-hidden="true">3.7.</strong> Crab graphics</a></li><li><a href="../lsystem/synthesis.html"><strong aria-hidden="true">3.8.</strong> Synthesis</a></li><li><a href="../lsystem/expose.html"><strong aria-hidden="true">3.9.</strong> Exposé</a></li><li><a href="../lsystem/fun.html"><strong aria-hidden="true">3.10.</strong> Have fun</a></li></ol></li><li><a href="../overview.html"><strong aria-hidden="true">4.</strong> Overview</a></li><li><ol class="section"><li><a href="../cli.html"><strong aria-hidden="true">4.1.</strong> Command Line Interface</a></li><li><a href="../api.html"><strong aria-hidden="true">4.2.</strong> api Module</a></li></ol></li><li><a href="../parser.html"><strong aria-hidden="true">5.</strong> Parsers</a></li><li><ol class="section"><li><a href="../parser/what.html"><strong aria-hidden="true">5.1.</strong> What is a Parser?</a></li><li><a href="../parser/type.html"><strong aria-hidden="true">5.2.</strong> Looking at the type</a></li><li><a href="../parser/function.html"><strong aria-hidden="true">5.3.</strong> Functions are Parsers!</a></li><li><a href="../parser/character.html"><strong aria-hidden="true">5.4.</strong> Parsing a char</a></li><li><a href="../parser/any.html"><strong aria-hidden="true">5.5.</strong> Parsing any char</a></li><li><a href="../parser/literal.html"><strong aria-hidden="true">5.6.</strong> Literal</a></li><li><a href="../parser/combinators.html"><strong aria-hidden="true">5.7.</strong> Combinators</a></li><li><a href="../parser/map.html"><strong aria-hidden="true">5.8.</strong> Map</a></li><li><a href="../parser/between.html"><strong aria-hidden="true">5.9.</strong> Between</a></li><li><a href="../parser/oneof.html"><strong aria-hidden="true">5.10.</strong> OneOf</a></li><li><a href="../parser/utilities.html"><strong aria-hidden="true">5.11.</strong> Utilities</a></li><li><a href="../parser/macros.html"><strong aria-hidden="true">5.12.</strong> Macros</a></li><li><a href="../parser/sequence.html"><strong aria-hidden="true">5.13.</strong> Parsing a sequence</a></li><li><a href="../parser/framework.html"><strong aria-hidden="true">5.14.</strong> Use the framework</a></li></ol></li><li><a href="../interpreter.html"><strong aria-hidden="true">6.</strong> Interpreter</a></li><li><ol class="section"><li><a href="../interpreter/what.html"><strong aria-hidden="true">6.1.</strong> What is an Interpreter</a></li><li><a href="../interpreter/signature.html"><strong aria-hidden="true">6.2.</strong> Signature</a></li><li><a href="../interpreter/level.html"><strong aria-hidden="true">6.3.</strong> level</a></li></ol></li><li><a href="../renderer.html"><strong aria-hidden="true">7.</strong> Renderer</a></li><li><ol class="section"><li><a href="../renderer/what.html"><strong aria-hidden="true">7.1.</strong> What is a Renderer</a></li><li><a href="../renderer/initialization.html"><strong aria-hidden="true">7.2.</strong> Initialization</a></li><li><a href="../renderer/renderer-config.html"><strong aria-hidden="true">7.3.</strong> Renderer Configuration</a></li><li><a href="../renderer/crab-basics.html"><strong aria-hidden="true">7.4.</strong> Implementing Basic Instructions</a></li><li><a href="../renderer/state-management.html" class="active"><strong aria-hidden="true">7.5.</strong> Renderer State Management</a></li></ol></li><li><a href="../extensions.html"><strong aria-hidden="true">8.</strong> Why stop here</a></li><li class="affix"><a href="../dependencies.html">Working with Dependencies</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">L-Systems</h1>
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#renderer-state-management" id="renderer-state-management">Renderer State Management</a></h1>
+<p>You'll notice that our <code>RendererInstruction</code> enum includes operations for <code>Push</code> and <code>Pop</code>. These instructions are important for rendering more complex shapes because they allow us to &quot;save&quot; the state of the renderer and go back to it later. As you probably guessed, the renderer states are &quot;saved&quot; by pushing them onto a stack using the <code>Push</code> instruction. We can then re-load that saved state by <code>Pop</code>ing from the stack.</p>
+<h3><a class="header" href="#state" id="state">State</a></h3>
+<p>Here's an example of how we can represent this state:</p>
+<pre><code>struct State {
+    position: turtle::Point,
+    heading: turtle::Angle,
+    step: u16,
+}
+</code></pre>
+<p>Our <code>Crab</code> can use a <code>Vec&lt;State&gt;</code> as a stack. Whenever a <code>Push</code> instruction is executed, we capture the current state and push it onto the stack. Whenever a <code>Pop</code> instrution is executed, we'll pop a State from the stack and set the location, heading, etc. of our crab. Simple! Using <code>Push</code> and <code>Pop</code> instructions is what allows for some really complex and interesting images.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../renderer/crab-basics.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../extensions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../renderer/crab-basics.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../extensions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
