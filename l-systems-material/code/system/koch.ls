@@ -1,6 +1,6 @@
 config:
-step = 5
-angle = 60
+step = 18
+angle = 85
 
 rules:
 axiom = F
